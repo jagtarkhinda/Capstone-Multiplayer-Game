@@ -1,17 +1,28 @@
 // Movement of player
-
+/*
 if(keyboard_check(ord("A")) || keyboard_check(vk_left)) x = x - 4;
 if(keyboard_check(ord("D")) || keyboard_check(vk_right)) x = x + 4; 
 if(keyboard_check(ord("W")) || keyboard_check(vk_up)) y = y - 4;
 if(keyboard_check(ord("S")) || keyboard_check(vk_down))	y = y + 4; 
+*/
+horizontalSpeed = walkingSpeed*(keys[KEY_RIGHT]-keys[KEY_LEFT])
+verticalSpeed = walkingSpeed*(keys[KEY_DOWN]-keys[KEY_UP])
 
-image_angle = point_direction(x,y,mouse_x,mouse_y);
-
-// Shotting
-
-if (mouse_check_button(mb_left)) && (cooldown < 1) {
-	instance_create_layer(x, y, "bullet_Layer", obj_Bullet);
-	cooldown = 10;
+if(place_free(x+horizontalSpeed, y)){
+	x+=horizontalSpeed
+}else{
+	horizontalSpeed = distance_to_object(obj_Wall)*sign(horizontalSpeed)
 }
 
-cooldown = cooldown - 1;
+if(place_free(x, y+verticalSpeed)){
+	y+=verticalSpeed
+}else{
+	verticalSpeed = distance_to_object(obj_Wall)*sign(verticalSpeed)
+}
+
+
+if(horizontalSpeed == 0){
+	sprite_index = idle_sprite
+}else{
+	sprite_index = run_sprite
+}

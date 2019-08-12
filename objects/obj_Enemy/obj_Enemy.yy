@@ -1,38 +1,38 @@
 {
-    "id": "15b05d15-2ab9-4891-ac40-6e3ed04cf110",
+    "id": "95ae8863-07d4-49a5-b178-4095985e39c0",
     "modelName": "GMObject",
     "mvc": "1.0",
     "name": "obj_Enemy",
     "eventList": [
         {
-            "id": "c77c9ac8-d6ab-42cc-a49e-c9b4ff9d6881",
+            "id": "fbd8c21a-c1db-4b2f-b9c3-d9bc87076d67",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 0,
-            "m_owner": "15b05d15-2ab9-4891-ac40-6e3ed04cf110"
+            "m_owner": "95ae8863-07d4-49a5-b178-4095985e39c0"
         },
         {
-            "id": "f650a540-e52d-42b0-acc2-545352ab187d",
+            "id": "09f37867-2960-4f73-828f-b8833d373a2b",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 3,
-            "m_owner": "15b05d15-2ab9-4891-ac40-6e3ed04cf110"
+            "m_owner": "95ae8863-07d4-49a5-b178-4095985e39c0"
         },
         {
-            "id": "3e0c5ed1-9129-433d-965e-3d4bf76a4ff9",
+            "id": "0f71784a-68a5-4ba2-9c52-003262766eaa",
             "modelName": "GMEvent",
             "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "3f54521e-b655-4388-b980-808e4a573057",
+            "IsDnD": true,
+            "collisionObjectId": "95d5ea78-ab75-48ca-ae44-1be9cfc9a16d",
             "enumb": 0,
             "eventtype": 4,
-            "m_owner": "15b05d15-2ab9-4891-ac40-6e3ed04cf110"
+            "m_owner": "95ae8863-07d4-49a5-b178-4095985e39c0"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
@@ -51,56 +51,56 @@
     "physicsShape": 2,
     "physicsShapePoints": [
         {
-            "id": "5ee319ca-8033-49f3-88b1-3314ac500f69",
+            "id": "7cf4d59e-1722-40d8-9642-0ca5214392b6",
             "modelName": "GMPoint",
             "mvc": "1.0",
             "x": 37,
             "y": 20
         },
         {
-            "id": "e79844fb-e857-4746-b2f0-4ce6861262e0",
+            "id": "cf68cfc1-b9a3-4800-9a33-4825ecaff068",
             "modelName": "GMPoint",
             "mvc": "1.0",
             "x": 75,
             "y": 22
         },
         {
-            "id": "465ba98b-a39c-4982-923b-d84f6870fa84",
+            "id": "4c06026b-cf10-4db0-9373-674d724f4160",
             "modelName": "GMPoint",
             "mvc": "1.0",
             "x": 95,
             "y": 49
         },
         {
-            "id": "2b784fe9-6739-4145-8c84-9d4bf6b3653f",
+            "id": "7425967e-0268-44ce-99a8-46aa6bf79d05",
             "modelName": "GMPoint",
             "mvc": "1.0",
             "x": 91,
             "y": 83
         },
         {
-            "id": "dabee209-8706-4b21-a2ad-16b00d5ae6a4",
+            "id": "48890a9a-24a2-4eb2-b024-64f3f377d474",
             "modelName": "GMPoint",
             "mvc": "1.0",
             "x": 66,
             "y": 100
         },
         {
-            "id": "56e4f1b9-48a4-40fc-a966-ac0c310550bb",
+            "id": "e6ae8a05-ee93-4545-96cf-770433443c9c",
             "modelName": "GMPoint",
             "mvc": "1.0",
             "x": 35,
             "y": 97
         },
         {
-            "id": "1d1c9107-5b97-4c52-8d2b-0af5ecf2b118",
+            "id": "fdd3a1be-c5a4-41ab-9002-0f99e261823f",
             "modelName": "GMPoint",
             "mvc": "1.0",
             "x": 17,
             "y": 77
         },
         {
-            "id": "c8685c49-e098-4667-b012-210fd6c8c154",
+            "id": "c815d6b3-b9f4-45dc-8b31-6002b7460a31",
             "modelName": "GMPoint",
             "mvc": "1.0",
             "x": 17,
