@@ -1,5 +1,6 @@
 var event_id = async_load[? "id"]
 
+
 if server == event_id{
 	var type = async_load[? "type"]
 	var sock = async_load[? "socket"]
@@ -10,7 +11,9 @@ if server == event_id{
 		ds_list_add(sockets, sock)
 		
 		//create a player
-		var playerH = instance_create_layer(100, 100+32*sock, "Instances", obj_Player)
+		var playerH = instance_create_layer(64, 64+32, "Instances", obj_Player)
+		//var playerH = instance_create_layer(64, 64+32*sock, "Instances", obj_Player)
+		playerH.my_id = sock
 		ds_map_add(clients, sock, playerH)
 		
 		ready[sock] = false
@@ -21,12 +24,17 @@ if server == event_id{
 			SendRemoteEntity(sock, CMD_Y, player.id, player.y)
 			SendRemoteEntity(sock, CMD_NAME, player.id, player.name)
 			SendRemoteEntity(sock, CMD_SPRITE, player.id, player.sprite_index)
+			SendRemoteEntity(sock, CMD_MYID, player.id, player.my_id)
 		}
 		
 		for(var c = 0; c <= TANK_CHARACTER_YELLOW; c++){
 			var a = false
 			if (ds_list_find_value(available_tanks, ds_list_find_index(available_tanks, c)) != undefined){
 				a = true
+			}
+			
+			if(game_is_started == 0){
+				game_is_started = 1
 			}
 			SendPicked(sock, c, a)
 		}
@@ -85,8 +93,9 @@ if server == event_id{
 					ds_list_delete(available_tanks, ds_list_find_index(available_tanks, c))	
 				}
 			}
-			
-			
+		break
+		case PACKET_MYID :
+			SendPlayerID(sock, sock)
 		break
 	}
 }

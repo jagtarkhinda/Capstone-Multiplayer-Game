@@ -69,3 +69,18 @@ if(playing){
 }
 
 char = clamp(char, 0, TANK_CHARACTER_YELLOW)
+
+//loop players
+
+for(var i = 0; i < instance_number(obj_remote_entity); i++){
+	var e = instance_find(obj_remote_entity, i)
+	if(my_id == e.my_id){
+		target = e
+		break
+	}
+}
+
+if(target != noone){
+	camera_set_view_target(view_camera[0], e)
+	camera_set_view_border(view_camera[0], view_wport[0]/2, view_hport[0]/2)
+}

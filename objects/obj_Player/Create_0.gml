@@ -12,6 +12,7 @@ walkingSpeed = 2
 horizontalSpeed = 0
 verticalSpeed = 0
 
+my_id = -1
 name = "Player"
 char = 0
 
@@ -20,3 +21,7 @@ if(instance_exists(obj_server)){
 }
 
 HandleSprites(char)
+
+playerMaxhp = 100
+playerhp =  playerMaxhp
+

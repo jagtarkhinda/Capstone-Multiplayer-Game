@@ -3,6 +3,7 @@
 #macro CMD_NAME		2
 #macro CMD_SPRITE	3
 #macro CMD_DESTROY	4
+#macro CMD_MYID		5
 
 buffer_seek(buffer, buffer_seek_start, 0)
 buffer_write(buffer, buffer_u8, PACKET_ENTITY)
@@ -23,6 +24,9 @@ switch(argument1){
 		buffer_write(buffer, buffer_u16, argument3)
 	break
 	case CMD_DESTROY:
+		buffer_write(buffer, buffer_u8, argument3)
+	break
+	case CMD_MYID:
 		buffer_write(buffer, buffer_u8, argument3)
 	break
 }

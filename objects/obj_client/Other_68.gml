@@ -38,6 +38,9 @@ if socket == event_id{
 				}
 				
 			break
+			case CMD_MYID:
+				p.my_id = buffer_read(buff, buffer_u8)
+			break
 		}
 	break
 	case PACKET_PLAY :
@@ -45,6 +48,9 @@ if socket == event_id{
 	break
 	case PACKET_PICKED :
 		picked[buffer_read(buff, buffer_u8)] = buffer_read(buff, buffer_u8)
+	break
+	case PACKET_MYID :
+		my_id = buffer_read(buff, buffer_u8)
 	break
 	}
 }

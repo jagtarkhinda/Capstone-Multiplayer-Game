@@ -26,3 +26,9 @@ if(horizontalSpeed == 0){
 }else{
 	sprite_index = run_sprite
 }
+
+
+if(playerhp >= playerMaxhp){
+	playerhp = playerMaxhp
+}
+

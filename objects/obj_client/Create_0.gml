@@ -21,4 +21,8 @@ picked[1] = false
 picked[2] = false
 picked[3] = false
 
+my_id = -1
+target = noone
 image_speed = .1
+
+SendMyId()
