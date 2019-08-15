@@ -114,8 +114,6 @@ if server == event_id{
 		var mouse_xpos = buffer_read(buff, buffer_s16)
 		var mouse_ypos = buffer_read(buff, buffer_s16)
 
-		//show_debug_message("player.x: " + string(player.x));
-		//show_debug_message("player.y: " + string(player.y));
 				
 		var b = instance_create_layer(p.x, p.y, "Bullet_Layer", obj_Bullet)
 		b.direction = point_direction(p.x, p.y, mouse_xpos, mouse_ypos);
@@ -130,7 +128,7 @@ if server == event_id{
 			var so = ds_list_find_value(sockets, s)
 			SendBullet(so, BULL_X, b.id, b.x)
 			SendBullet(so, BULL_Y, b.id, b.y)
-			SendBullet(so, BULL_SPRITE, b.id, b.sprite_index)
+			//SendBullet(so, BULL_SPRITE, b.id, b.sprite_index)
 		}
 
 			/*

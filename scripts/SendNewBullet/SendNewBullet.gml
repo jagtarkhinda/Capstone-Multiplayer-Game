@@ -1,5 +1,4 @@
 buffer_seek(buffer, buffer_seek_start, 0)
-buffer_write(buffer, buffer_u8, PACKET_NEW_BULLET)
 buffer_write(buffer, buffer_u8, argument0)
 buffer_write(buffer, buffer_s16, argument1)
 buffer_write(buffer, buffer_s16, argument2)
