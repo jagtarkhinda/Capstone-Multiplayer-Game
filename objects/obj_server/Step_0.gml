@@ -63,7 +63,7 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 		SendRemoteEntity(so, CMD_Y, boss.id, boss.y)
 		SendRemoteEntity(so, CMD_NAME, boss.id, "Boss")
 		SendRemoteEntity(so, CMD_SPRITE, boss.id, boss.sprite_index)
-		show_debug_message("boss.sprite_index: " + string(boss.sprite_index));
+		//show_debug_message("boss.sprite_index: " + string(boss.sprite_index));
 		
 		//show_debug_message("Enemies: " + string(ds_list_size(enemies)));
 		//update enemies
@@ -73,8 +73,6 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 			SendRemoteEntity(so, CMD_Y, enemy.id, enemy.y)
 			SendRemoteEntity(so, CMD_NAME, enemy.id, "Enemy")
 			SendRemoteEntity(so, CMD_SPRITE, enemy.id, enemy.sprite_index)
-			
-			
 		}
 	}
 }

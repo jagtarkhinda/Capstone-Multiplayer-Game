@@ -16,6 +16,7 @@
 #macro PACKET_PLAY		4
 #macro PACKET_PICKED	5
 #macro PACKET_MYID		6
+#macro PACKET_NEW_BULLET	7
 
 server = network_create_server(network_socket_tcp, PORT, MAX_CLIENTS)
 
@@ -25,6 +26,7 @@ clients = ds_map_create()
 sockets = ds_list_create()
 game_is_started = 0
 enemies = ds_list_create()
+bullets = ds_list_create()
 
 boss = pointer_null
 

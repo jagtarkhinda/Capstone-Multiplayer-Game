@@ -48,6 +48,29 @@ if(playing){
 	if(keyboard_check_released(vk_up)){
 		SendMovement(KEY_UP, false)
 	}
+	
+	//loop players
+	for(var i = 0; i < instance_number(obj_remote_entity); i++){
+		var e = instance_find(obj_remote_entity, i)
+		if(my_id == e.my_id){
+			target = e
+			break
+		}
+	}
+
+	if(target != noone){
+		camera_set_view_target(view_camera[0], e)
+		camera_set_view_border(view_camera[0], view_wport[0]/2, view_hport[0]/2)
+	}
+	
+	// Shotting
+	//image_angle = point_direction(e.x,e.y,mouse_x,mouse_y);
+ 
+	if (mouse_check_button(mb_left)) && (cooldown < 1) {
+		cooldown = 10;
+		SendNewBullet(PACKET_NEW_BULLET, mouse_x, mouse_y)
+	}
+	cooldown = cooldown - 1;
 }else{
 	if(keyboard_check_pressed(vk_left)){
 		char -- 
@@ -70,17 +93,3 @@ if(playing){
 
 char = clamp(char, 0, TANK_CHARACTER_YELLOW)
 
-//loop players
-
-for(var i = 0; i < instance_number(obj_remote_entity); i++){
-	var e = instance_find(obj_remote_entity, i)
-	if(my_id == e.my_id){
-		target = e
-		break
-	}
-}
-
-if(target != noone){
-	camera_set_view_target(view_camera[0], e)
-	camera_set_view_border(view_camera[0], view_wport[0]/2, view_hport[0]/2)
-}

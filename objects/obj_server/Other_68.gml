@@ -43,6 +43,13 @@ if server == event_id{
 	//disconnect
 	if(type == network_type_disconnect){
 		var p = clients[? sock]
+		
+		//destroy the client that left
+		for(var s = 0; s < ds_list_size(sockets); s++){
+			var so = ds_list_find_value(sockets, s)
+			SendRemoteEntity(so, CMD_DESTROY, p.id, 0)
+		}
+		
 		if(instance_exists(p)){
 			with(p){
 				instance_destroy()
@@ -97,5 +104,41 @@ if server == event_id{
 		case PACKET_MYID :
 			SendPlayerID(sock, sock)
 		break
+		
+		case PACKET_NEW_BULLET :
+
+		//show_debug_message("p.id: " + string(p.id));
+		//show_debug_message("p.my_id: " + string(p.my_id));
+
+		
+		var mouse_xpos = buffer_read(buff, buffer_s16)
+		var mouse_ypos = buffer_read(buff, buffer_s16)
+
+		//show_debug_message("player.x: " + string(player.x));
+		//show_debug_message("player.y: " + string(player.y));
+				
+		var b = instance_create_layer(p.x, p.y, "Bullet_Layer", obj_Bullet)
+		b.direction = point_direction(p.x, p.y, mouse_xpos, mouse_ypos);
+		b.direction = b.direction + random_range(1,1);
+		b.speed = 10;
+		b.image_angle = b.direction;
+				
+		ds_map_add(bullets, sock, b)
+				
+		//update bullet to clients
+		for(var s = 0; s < ds_list_size(sockets); s++){
+			var so = ds_list_find_value(sockets, s)
+			SendBullet(so, BULL_X, b.id, b.x)
+			SendBullet(so, BULL_Y, b.id, b.y)
+			SendBullet(so, BULL_SPRITE, b.id, b.sprite_index)
+		}
+
+			/*
+			var p = clients[? sock]
+			var b = instance_create_layer(p.x, p.y+32, "Bullet_Layer", obj_Bullet)
+			ds_map_add(bullets, sock, b)
+			SendBullet(sock)*/
+		break
+		
 	}
 }

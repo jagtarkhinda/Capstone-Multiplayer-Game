@@ -52,5 +52,39 @@ if socket == event_id{
 	case PACKET_MYID :
 		my_id = buffer_read(buff, buffer_u8)
 	break
+	case PACKET_NEW_BULLET :
+
+		var c = buffer_read(buff, buffer_u8)
+		var b_id = buffer_read(buff, buffer_u32)
+		
+		if !ds_map_exists(bullets, b_id){
+			var b = instance_create_layer(0, 0, "Bullet_Layer", obj_remote_bullet)
+			ds_map_set(bullets, b_id, b)
+		}
+		
+		var b = bullets[? b_id]
+		
+		switch(c){
+			case BULL_X:
+				b.x = buffer_read(buff, buffer_s16)
+			break
+			case BULL_Y:
+				b.y = buffer_read(buff, buffer_s16)
+			break
+			case BULL_SPRITE:
+				b.sprite_index = buffer_read(buff, buffer_u16)
+			break
+			case BULL_DESTROY:
+				buffer_read(buff, buffer_u8)
+				ds_map_delete(bullets, b_id)
+				with(b){
+					instance_destroy()
+				}
+			break
+		}
+		
+		
+		
+	break
 	}
 }

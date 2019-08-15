@@ -10,8 +10,11 @@ if(connect < 0 ){
 
 //
 entities = ds_map_create()
+bullets = ds_map_create()
 SendName(global.name)
 char = 0
+cooldown = 0;
+
 //char = get_integer("Character from 0 to 5", 0)
 //SendTankCharacter(char)
 playing = false
