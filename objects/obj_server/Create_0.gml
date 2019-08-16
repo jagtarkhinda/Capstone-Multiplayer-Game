@@ -17,6 +17,7 @@
 #macro PACKET_PICKED	5
 #macro PACKET_MYID		6
 #macro PACKET_NEW_BULLET	7
+#macro PACKET_ENEMY1_POSITION 8
 
 server = network_create_server(network_socket_tcp, PORT, MAX_CLIENTS)
 
@@ -24,11 +25,18 @@ buffer = buffer_create(16384, buffer_grow, 1)
 
 clients = ds_map_create()
 sockets = ds_list_create()
-game_is_started = 0
-enemies = ds_list_create()
-bullets = ds_list_create()
 
+game_is_started = 0
+
+
+
+//to store enemies
+enemies1 = ds_list_create()
+
+bullets = ds_list_create()
+enemy_id = 0;
 boss = pointer_null
+
 
 available_tanks = ds_list_create()
 ds_list_add(available_tanks, TANK_CHARACTER_RED)

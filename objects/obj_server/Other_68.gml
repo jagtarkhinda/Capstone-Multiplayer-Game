@@ -42,7 +42,7 @@ if server == event_id{
 	
 	//disconnect
 	if(type == network_type_disconnect){
-		var p = clients[? sock]
+		p = clients[? sock]
 		
 		//destroy the client that left
 		for(var s = 0; s < ds_list_size(sockets); s++){
@@ -99,7 +99,33 @@ if server == event_id{
 					}
 					ds_list_delete(available_tanks, ds_list_find_index(available_tanks, c))	
 				}
-			}
+				
+				//if the player has selected the tank , we will update the enemies sprites -jsk
+				//instance_create_layer(0,0,"Instances",enemy1_spawn);
+				//adding all the enemies to ds_lis
+
+					if(ds_list_size(enemies1) < 17){
+						var missing_enemies = 17 - ds_list_size(enemies1)
+						for(var s = 0; s < missing_enemies; s++){
+							
+							//incrementing the id everytime a new enemy spawn
+							ene = instance_create_layer(762,1211,"Enemy_Layer",obj_enemy1);
+							enemy_id += 1;
+							//making each enemy follow some path
+							//setting up different path for each instance according to the current id
+							var current_path = asset_get_index("path" + string(enemy_id));
+							//starting the path
+							with(ene){
+			
+							path_start(current_path, 1, path_action_reverse,true);
+							}
+							ds_list_add(enemies1, ene)
+							
+					}
+				}
+				}
+				//
+
 		break
 		case PACKET_MYID :
 			SendPlayerID(sock, sock)
@@ -111,11 +137,11 @@ if server == event_id{
 		//show_debug_message("p.my_id: " + string(p.my_id));
 
 		
-		var mouse_xpos = buffer_read(buff, buffer_s16)
-		var mouse_ypos = buffer_read(buff, buffer_s16)
+		mouse_xpos = buffer_read(buff, buffer_s16)
+		mouse_ypos = buffer_read(buff, buffer_s16)
 
 				
-		var b = instance_create_layer(p.x, p.y, "Bullet_Layer", obj_Bullet)
+		 b = instance_create_layer(p.x, p.y, "Bullet_Layer", obj_Bullet)
 		b.direction = point_direction(p.x, p.y, mouse_xpos, mouse_ypos);
 		b.direction = b.direction + random_range(1,1);
 		b.speed = 10;
@@ -128,7 +154,12 @@ if server == event_id{
 			var so = ds_list_find_value(sockets, s)
 			SendBullet(so, BULL_X, b.id, b.x)
 			SendBullet(so, BULL_Y, b.id, b.y)
-			//SendBullet(so, BULL_SPRITE, b.id, b.sprite_index)
+			//sending the speed,angle and direction of bullet - jsk
+			SendBullet(so, BULL_DIRECTION, b.id, b.direction)
+			SendBullet(so, BULL_SPEED,b.id,b.speed)
+			SendBullet(so, BULL_ANGLE,b.id,b.image_angle)	
+			//
+			SendBullet(so, BULL_SPRITE, b.id, b.sprite_index)
 		}
 
 			/*

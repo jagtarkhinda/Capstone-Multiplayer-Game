@@ -52,11 +52,11 @@ if socket == event_id{
 	case PACKET_MYID :
 		my_id = buffer_read(buff, buffer_u8)
 	break
+	//getting data about bullet
 	case PACKET_NEW_BULLET :
 
 		var c = buffer_read(buff, buffer_u8)
 		var b_id = buffer_read(buff, buffer_u32)
-		
 		if !ds_map_exists(bullets, b_id){
 			var b = instance_create_layer(0, 0, "Bullet_Layer", obj_remote_bullet)
 			ds_map_set(bullets, b_id, b)
@@ -74,6 +74,15 @@ if socket == event_id{
 			case BULL_SPRITE:
 				b.sprite_index = buffer_read(buff, buffer_u16)
 			break
+			case BULL_DIRECTION:
+				b.direction = buffer_read(buff, buffer_u16)
+			break
+			case BULL_ANGLE:
+				b.image_angle = buffer_read(buff, buffer_u16)
+			break
+			case BULL_SPEED:
+				b.speed = buffer_read(buff, buffer_u16)
+			break
 			case BULL_DESTROY:
 				buffer_read(buff, buffer_u8)
 				ds_map_delete(bullets, b_id)
@@ -86,5 +95,44 @@ if socket == event_id{
 		
 		
 	break
-	}
+	
+///// ADDED - JSK
+	//getting the enemy positions
+	case PACKET_ENEMY1_POSITION :
+
+		var c = buffer_read(buff, buffer_u8)
+		var ene_id = buffer_read(buff, buffer_u32)
+		
+		if !ds_map_exists(enemies1, ene_id){
+			var b = instance_create_layer(0, 0, "Enemy_Layer", obj_enemy1)
+			ds_map_set(enemies1, ene_id, b)
+		}
+		
+		var en1 = enemies1[? ene_id]
+		
+		switch(c){
+			case ENE1_X:
+				en1.x = buffer_read(buff, buffer_s16)
+			break
+			case ENE1_Y:
+				en1.y = buffer_read(buff, buffer_s16)
+			break
+			case ENE1_SPRITE:
+				en1.sprite_index = buffer_read(buff, buffer_u16)
+			break
+			case ENE1_SPEED:
+				en1.speed = buffer_read(buff, buffer_u16)
+			break
+			case BULL_DESTROY:
+				buffer_read(buff, buffer_u8)
+				ds_map_delete(bullets, b_id)
+				with(b){
+					instance_destroy()
+				}
+			break
+		}
+		
+		break
+}
+		
 }

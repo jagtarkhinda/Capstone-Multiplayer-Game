@@ -48,13 +48,13 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 	}
 	
 	//create enemies to a total of 5
-	if(ds_list_size(enemies) < 5){
+	/*if(ds_list_size(enemies) < 5){
 		var missing_enemies = 5 - ds_list_size(enemies)
 		for(var s = 0; s < missing_enemies; s++){
 			ene = instance_create_layer(room_width/2, room_width/2, "Enemy_Layer", obj_child)
 			ds_list_add(enemies, ene)
 		}
-	}
+	}*/
 	
 	for(var s = 0; s < ds_list_size(sockets); s++){
 		var so = ds_list_find_value(sockets, s)
@@ -63,16 +63,42 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 		SendRemoteEntity(so, CMD_Y, boss.id, boss.y)
 		SendRemoteEntity(so, CMD_NAME, boss.id, "Boss")
 		SendRemoteEntity(so, CMD_SPRITE, boss.id, boss.sprite_index)
-		//show_debug_message("boss.sprite_index: " + string(boss.sprite_index));
-		
-		//show_debug_message("Enemies: " + string(ds_list_size(enemies)));
+	
 		//update enemies
-		for(var en = 0; en < ds_list_size(enemies); en++){
-			var enemy = ds_list_find_value(enemies, en)
-			SendRemoteEntity(so, CMD_X, enemy.id, enemy.x)
-			SendRemoteEntity(so, CMD_Y, enemy.id, enemy.y)
-			SendRemoteEntity(so, CMD_NAME, enemy.id, "Enemy")
-			SendRemoteEntity(so, CMD_SPRITE, enemy.id, enemy.sprite_index)
+		//ADDED - JSK
+		for(var en = 0; en < ds_list_size(enemies1); en++){
+			var enemy = ds_list_find_value(enemies1, en)
+			SendEnemyPositions(so, ENE1_X, enemy.id, enemy.x)
+			SendEnemyPositions(so,ENE1_SPEED,enemy.id,2)
+			SendEnemyPositions(so, ENE1_Y, enemy.id, enemy.y)
+		//	SendEnemyPositions(so, ENE1_NAME, enemy.id, "Enemy")
+			SendEnemyPositions(so, ENE1_SPRITE, enemy.id, enemy.sprite_index)
 		}
+		
+		
+		//send data about other players
+for(var i = 0; i < instance_number(obj_Player); i++){
+	var playera = instance_find(obj_Player, i)
+	
+		//update bullet to clients
+		for(var oo = 0; oo < ds_list_size(bullets); oo++){
+			var bu = ds_list_find_value(bullets, oo)
+			bu.direction = point_direction(playera.x,playera.y, mouse_xpos, mouse_ypos);
+			bu.direction = bu.direction + random_range(1,1);
+			bu.speed = 10;
+			bu.image_angle = b.direction;
+			SendBullet(so, BULL_X, bu.id, bu.x)
+			SendBullet(so, BULL_Y, bu.id, bu.y)
+			//sending the speed,angle and direction of bullet - jsk
+			SendBullet(so, BULL_DIRECTION, bu.id, bu.direction)
+			SendBullet(so, BULL_SPEED,bu.id,bu.speed)
+			SendBullet(so, BULL_ANGLE,bu.id,bu.image_angle)
+			//
+			SendBullet(so, BULL_SPRITE, bu.id, bu.sprite_index)
+		}
+}
+				
+		
+		
 	}
 }

@@ -2,6 +2,10 @@
 #macro BULL_Y		1
 #macro BULL_SPRITE	2
 #macro BULL_DESTROY	3
+#macro BULL_DIRECTION 4
+#macro BULL_SPEED  5
+#macro BULL_ANGLE 6
+
 
 buffer_seek(buffer, buffer_seek_start, 0)
 buffer_write(buffer, buffer_u8, PACKET_NEW_BULLET)
@@ -14,6 +18,15 @@ switch(argument1){
 	break
 	case BULL_Y:
 		buffer_write(buffer, buffer_s16, argument3)
+	break
+	case BULL_DIRECTION:
+		buffer_write(buffer, buffer_u16, argument3)
+	break
+	case BULL_SPEED:
+		buffer_write(buffer, buffer_u16, argument3)
+	break
+	case BULL_ANGLE:
+		buffer_write(buffer, buffer_u16, argument3)
 	break
 	case BULL_SPRITE:
 		buffer_write(buffer, buffer_u16, argument3)
