@@ -103,7 +103,7 @@ for(var i = 0; i < instance_number(obj_Player); i++){
 }
 			
 			//making enemies follow the player -JSK
-				for(var en = 0; en < ds_list_size(enemies1); en++)
+for(var en = 0; en < ds_list_size(enemies1); en++)
 						{
 							var enemy_i = ds_list_find_value(enemies1, en)
 							
@@ -128,5 +128,4 @@ for(var i = 0; i < instance_number(obj_Player); i++){
 				}
 			
 		
-	}
 }
