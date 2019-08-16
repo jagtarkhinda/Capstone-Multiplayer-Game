@@ -14,11 +14,8 @@ enemy1_speed = 1.5;
 //starting the path
 //path_start(current_path, enemy1_speed, path_action_reverse,true);
 
-<<<<<<< HEAD
 if(instance_exists(obj_server)){
 	visible = false //remove the sprite duplication on the player host
 }
-=======
 monsterMaxHp = 20
 monsterHp = monsterMaxHp
->>>>>>> 4ab2ec150c0fd3ae205f2e9839c00840a7d0a006

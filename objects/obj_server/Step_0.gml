@@ -101,7 +101,7 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 					SendBullet(so, BULL_SPRITE, bu.id, bu.sprite_index)
 				}
 		}
-			
+
 		//looping all enemies
 		for(var en = 0; en < ds_list_size(enemies1); en++)
 		{
@@ -134,7 +134,6 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 					move_towards_point(player_closer.x, player_closer.y, 1);
 				}
 			}
-			
 		}
 	}
 }
