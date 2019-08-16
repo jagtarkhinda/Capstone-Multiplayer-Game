@@ -75,6 +75,10 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 			SendEnemyPositions(so, ENE1_SPRITE, enemy.id, enemy.sprite_index)
 		}
 		
+		#region
+			//if()
+		#endregion
+		
 		
 		//send data about other players
 		for(var i = 0; i < instance_number(obj_Player); i++){
