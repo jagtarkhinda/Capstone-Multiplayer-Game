@@ -10,7 +10,8 @@
         "bc5c153c-ec1b-4e18-a59a-5f23a20e162e",
         "fd15e778-af1b-412e-b9f8-4da7e759ffe4",
         "95a9ae0e-9b64-49bf-b104-713b246fffed",
-        "d91f530f-0461-4f13-81e5-0b4045532389"
+        "d91f530f-0461-4f13-81e5-0b4045532389",
+        "8cc38caa-4ced-4135-8169-e9c1af4e1be4"
     ],
     "filterType": "GMScript",
     "folderName": "ServerToClient",

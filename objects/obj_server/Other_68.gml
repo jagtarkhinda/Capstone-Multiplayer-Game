@@ -168,6 +168,24 @@ if server == event_id{
 			ds_map_add(bullets, sock, b)
 			SendBullet(sock)*/
 		break
+		/*
+		case PACKET_BULLET_WALL :
+		var wall_id = buffer_read(buff, buffer_s16)
+		var w_hp = buffer_read(buff, buffer_s16)
+		var b_id = buffer_read(buff, buffer_s16)
+		
+		ds_list_delete(bullets, b_id)
+		
+		for(var s = 0; s < ds_list_size(sockets); s++){
+			var so = ds_list_find_value(sockets, s)
+			SendBullet(so, BULL_DESTROY, b_id, 0)
+			if(wall_hp <= 0){
+				SendUpdatedWalls(so, WALL_DESTROY, b_id, 0)
+			}
+		}
+		
+		break*/
+		
 	/*	
 		case PACKET_ENEMY1_POSITION :
 

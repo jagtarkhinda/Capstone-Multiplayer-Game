@@ -91,9 +91,6 @@ if socket == event_id{
 				}
 			break
 		}
-		
-		
-		
 	break
 	
 ///// ADDED - JSK
@@ -132,7 +129,33 @@ if socket == event_id{
 			break
 		}
 		
-		break
+	break
+	case PACKET_BULLET_WALL :
+		show_debug_message("GOT HERE");
+		var c = buffer_read(buff, buffer_u8)
+		
+		var w_id = buffer_read(buff, buffer_s32)
+		var wall = instance_find(obj_Wall, w_id)
+		show_debug_message("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+		show_debug_message("c: " + string(c));
+		show_debug_message("w_id: " + string(w_id));
+		show_debug_message("wall: " + string(wall));
+		
+		
+		switch(c){
+			case WALL_SPRITE:
+				wall.sprite_index = buffer_read(buff, buffer_u16)
+			break
+			case WALL_DESTROY:
+				with(wall){
+					wall.visible = false
+					show_debug_message("wall.x: " + string(wall.x));
+					show_debug_message("wall.y: " + string(wall.y));
+					instance_destroy()
+				}
+			break
+		}
+	break
 }
 		
 }

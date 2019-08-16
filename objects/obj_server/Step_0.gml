@@ -11,6 +11,14 @@ for(var i = 0; i < instance_number(obj_Player); i++){
 }
 
 if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
+	//get all walls
+	var num_walls = instance_number(obj_Wall)
+	//show_debug_message("num_walls: " + string(num_walls));
+	for(var s = 0; s < num_walls; s++){
+		var w = instance_find(obj_Wall, s)
+		ds_list_add(walls_list, w)
+	}
+	
 	//create boss
 	boss = instance_create_layer(room_width/2, room_width/2, "Enemy_Layer", obj_boss)
 	
@@ -63,7 +71,24 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 		SendRemoteEntity(so, CMD_Y, boss.id, boss.y)
 		SendRemoteEntity(so, CMD_NAME, boss.id, "Boss")
 		SendRemoteEntity(so, CMD_SPRITE, boss.id, boss.sprite_index)
-	
+		
+		//update walls
+		for(var t = 0; t < ds_list_size(walls_list); t++){
+			var w = ds_list_find_value(walls_list, t)
+			if(w.wall_hp <= 0){
+				SendUpdatedWalls(so, WALL_DESTROY, w.id, 0)
+				show_debug_message("w.id: " + string(w.id));
+				show_debug_message("w.wall_hp: " + string(w.wall_hp));
+				show_debug_message("num_walls: " + string(instance_number(obj_Wall)));
+				
+				ds_list_delete(walls_list, t)
+				with(w){
+					instance_destroy()
+				}
+				
+			}
+			
+		}
 		//update enemies
 		//ADDED - JSK
 		for(var en = 0; en < ds_list_size(enemies1); en++){
@@ -74,11 +99,6 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 		//	SendEnemyPositions(so, ENE1_NAME, enemy.id, "Enemy")
 			SendEnemyPositions(so, ENE1_SPRITE, enemy.id, enemy.sprite_index)
 		}
-		
-		#region
-			//if()
-		#endregion
-		
 		
 		//send data about other players
 		for(var i = 0; i < instance_number(obj_Player); i++){
