@@ -73,6 +73,28 @@ if(playing){
 		SendNewBullet(PACKET_NEW_BULLET, mouse_x, mouse_y)
 	}
 	cooldown = cooldown - 1;
+	
+	
+	//making enemies follow the player -JSK
+			
+					
+		/*			for(var en = 0; en < ds_list_size(enemies1); en++)
+					{
+						var enemy_i = ds_list_find_value(enemies1, en)
+						with(enemy_i)
+						{
+							if (distance_to_object(obj_Player) < 200)
+							{
+								path_end();
+								move_towards_point(obj_Player.x,obj_Player.y,1);
+								SendFollow(PACKET_ENEMY1_POSITION,enemy_i.x,enemy_i.y)	
+							}
+						}
+					
+					}
+	*/
+	///////////////////////////////////
+	
 }else{
 	if(keyboard_check_pressed(vk_left)){
 		char -- 

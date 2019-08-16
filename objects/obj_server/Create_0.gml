@@ -18,6 +18,7 @@
 #macro PACKET_MYID		6
 #macro PACKET_NEW_BULLET	7
 #macro PACKET_ENEMY1_POSITION 8
+#macro PACKET_ENEMYF_FOLLOW 9
 
 server = network_create_server(network_socket_tcp, PORT, MAX_CLIENTS)
 

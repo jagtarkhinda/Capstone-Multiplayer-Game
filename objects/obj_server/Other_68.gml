@@ -168,6 +168,41 @@ if server == event_id{
 			ds_map_add(bullets, sock, b)
 			SendBullet(sock)*/
 		break
+	/*	
+		case PACKET_ENEMY1_POSITION :
+
+		//show_debug_message("p.id: " + string(p.id));
+		//show_debug_message("p.my_id: " + string(p.my_id));
+
+		
+		ene1xx = buffer_read(buff, buffer_s16)
+		ene1yy = buffer_read(buff, buffer_s16)
+
+				
+		// b = instance_create_layer(p.x, p.y, "Bullet_Layer", obj_Bullet)
+		
+				
+		//ds_map_add(bullets, sock, b)
+				
+		//update bullet to clients
+		for(var s = 0; s < ds_list_size(sockets); s++){
+			var so = ds_list_find_value(sockets, s)
+			SendEnemyPositions(so, ENE1_X, enemy.id, enemy.x)
+			SendEnemyPositions(so,ENE1_SPEED,enemy.id,2)
+			SendEnemyPositions(so, ENE1_Y, enemy.id, enemy.y)
+		//	SendEnemyPositions(so, ENE1_NAME, enemy.id, "Enemy")
+			SendEnemyPositions(so, ENE1_SPRITE, enemy.id, enemy.sprite_index)
+		}
+
+			/*
+			var p = clients[? sock]
+			var b = instance_create_layer(p.x, p.y+32, "Bullet_Layer", obj_Bullet)
+			ds_map_add(bullets, sock, b)
+			SendBullet(sock)*/
+		//break
+		//////
+		
 		
 	}
+	
 }
