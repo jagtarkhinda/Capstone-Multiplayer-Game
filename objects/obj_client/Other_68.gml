@@ -104,7 +104,7 @@ if socket == event_id{
 		var ene_id = buffer_read(buff, buffer_u32)
 		
 		if !ds_map_exists(enemies1, ene_id){
-			var b = instance_create_layer(0, 0, "Enemy_Layer", obj_enemy1)
+			var b = instance_create_layer(0, 0, "Enemy_Layer", obj_remote_entity)
 			ds_map_set(enemies1, ene_id, b)
 		}
 		

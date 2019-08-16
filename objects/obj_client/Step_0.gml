@@ -65,8 +65,8 @@ if(playing){
 	
 	// Shotting
 	//image_angle = point_direction(e.x,e.y,mouse_x,mouse_y);
-	show_debug_message("mouse_x: " + string(mouse_x));
-	show_debug_message("mouse_y: " + string(mouse_y));
+	//show_debug_message("mouse_x: " + string(mouse_x));
+	//show_debug_message("mouse_y: " + string(mouse_y));show_debug_message("mouse_y: " + string(mouse_y));
  
 	if (mouse_check_button(mb_left)) && (cooldown < 1) {
 		cooldown = 10;

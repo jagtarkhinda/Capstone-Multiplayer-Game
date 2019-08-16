@@ -36,7 +36,7 @@ enemies1 = ds_list_create()
 
 bullets = ds_list_create()
 enemy_id = 0;
-boss = pointer_null
+boss = noone
 
 
 available_tanks = ds_list_create()

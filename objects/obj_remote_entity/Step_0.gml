@@ -4,6 +4,8 @@ if(instance_exists(obj_boss) ){
 }
 */
 
+/*
+
 //change image direction
 if(x > xprevious){
 	image_xscale = 1
@@ -11,4 +13,4 @@ if(x > xprevious){
 
 if(x < xprevious){
 	image_xscale = -1
-}
+}*/

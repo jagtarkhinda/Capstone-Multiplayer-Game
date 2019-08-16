@@ -77,52 +77,60 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 		
 		
 		//send data about other players
-for(var i = 0; i < instance_number(obj_Player); i++){
-	var playera = instance_find(obj_Player, i)
+		for(var i = 0; i < instance_number(obj_Player); i++){
+			var playera = instance_find(obj_Player, i)
 	
-		//update bullet to clients
-		for(var oo = 0; oo < ds_list_size(bullets); oo++){
-			var bu = ds_list_find_value(bullets, oo)
-			bu.direction = point_direction(playera.x,playera.y, mouse_xpos, mouse_ypos);
-			bu.direction = bu.direction + random_range(1,1);
-			bu.speed = 10;
-			bu.image_angle = b.direction;
-			SendBullet(so, BULL_X, bu.id, bu.x)
-			SendBullet(so, BULL_Y, bu.id, bu.y)
-			//sending the speed,angle and direction of bullet - jsk
-			SendBullet(so, BULL_DIRECTION, bu.id, bu.direction)
-			SendBullet(so, BULL_SPEED,bu.id,bu.speed)
-			SendBullet(so, BULL_ANGLE,bu.id,bu.image_angle)
-			//
-			SendBullet(so, BULL_SPRITE, bu.id, bu.sprite_index)
+				//update bullet to clients
+				for(var oo = 0; oo < ds_list_size(bullets); oo++){
+					var bu = ds_list_find_value(bullets, oo)
+					bu.direction = point_direction(playera.x,playera.y, mouse_xpos, mouse_ypos);
+					bu.direction = bu.direction + random_range(1,1);
+					bu.speed = 10;
+					bu.image_angle = b.direction;
+					SendBullet(so, BULL_X, bu.id, bu.x)
+					SendBullet(so, BULL_Y, bu.id, bu.y)
+					//sending the speed,angle and direction of bullet - jsk
+					SendBullet(so, BULL_DIRECTION, bu.id, bu.direction)
+					SendBullet(so, BULL_SPEED,bu.id,bu.speed)
+					SendBullet(so, BULL_ANGLE,bu.id,bu.image_angle)
+					//
+					SendBullet(so, BULL_SPRITE, bu.id, bu.sprite_index)
+				}
 		}
-}
 			
-			//making enemies follow the player -JSK
-				for(var en = 0; en < ds_list_size(enemies1); en++)
+		//looping all enemies
+		for(var en = 0; en < ds_list_size(enemies1); en++)
+		{
+			var player_closer = noone //near player from enemy perspective
+			var distance = 200 // max distance
+			var enemy_i = ds_list_find_value(enemies1, en)
+					
+			for(var follow_player = 0; follow_player < ds_list_size(sockets); follow_player++)
+			{
+				//select the closes player 
+				var p = ds_list_find_value(sockets, follow_player)
+				var f_p = clients[? p]
+				
+				if(f_p.sprite_index != spr_boss){//change later
+					with(enemy_i)
+					{
+						if (distance_to_object(f_p) < distance) //checks the current min distance
 						{
-							var enemy_i = ds_list_find_value(enemies1, en)
-							
-							for(var follow_player = 0; follow_player < ds_list_size(sockets); follow_player++)
-							{
-								var f_p = ds_list_find_value(sockets, follow_player)
-								if(distance_to_object(f_p) < 200)
-								{
-									
-								}
-							}
-								with(enemy_i)
-								{
-									if (distance_to_object(f_p) < 200)
-									{
-										path_end();
-										move_towards_point(f_p.x,f_p.y,1);
-								
-									}
-								}
+							player_closer = f_p
+							distance = distance_to_object(f_p)
+						}
 					}
 				}
+			}
+			//takes the closes player and make the enemy follow him
+			if(player_closer != noone){
+				with(enemy_i)
+				{
+					path_end();
+					move_towards_point(player_closer.x, player_closer.y, 1);
+				}
+			}
 			
-		
+		}
 	}
 }
