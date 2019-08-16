@@ -97,8 +97,25 @@ for(var i = 0; i < instance_number(obj_Player); i++){
 			SendBullet(so, BULL_SPRITE, bu.id, bu.sprite_index)
 		}
 }
-				
-		
+			
+			//making enemies follow the player -JSK
+			for(var follow_player = 0; follow_player < ds_list_size(sockets); follow_player++)
+			{
+				var f_p = ds_list_find_value(sockets, follow_player)
+				for(var en = 0; en < ds_list_size(enemies1); en++)
+				{
+					var enemy = ds_list_find_value(enemies1, en)
+					with(enemy)
+					{
+						if (distance_to_object(f_p) < 200)
+						{
+							path_end();
+							move_towards_point(f_p.x,f_p.y,1);
+						}
+					}
+				}
+			}
+			
 		
 	}
 }
