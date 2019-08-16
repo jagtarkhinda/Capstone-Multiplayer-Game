@@ -14,3 +14,5 @@ enemy1_speed = 1.5;
 //starting the path
 //path_start(current_path, enemy1_speed, path_action_reverse,true);
 
+monsterMaxHp = 20
+monsterHp = monsterMaxHp
