@@ -36,21 +36,29 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 
 	if(global.boss_rage && global.current_level == 1)
 	{
+		boss_bullet_timer -= delta_time/1000000;
 		//boos shooting
-		boss_bullet = instance_create_layer(boss.x,boss.y,"Enemy_Layer", obj_boss_bullet);
-		ds_list_add(boss_bullets_server,boss_bullet)
-		for(var s = 0; s < ds_list_size(sockets); s++)
+		if(boss_bullet_timer <= 0)
 		{
-			var so = ds_list_find_value(sockets, s)
-			for(var oo = 0; oo < ds_list_size(boss_bullets_server); oo++)
-			{
-				var bu = ds_list_find_value(boss_bullets_server, oo)
-				SendBossBullet(so, BB_X, bu.id, bu.x)
-				SendBossBullet(so, BB_Y, bu.id, bu.y)
-				SendBossBullet(so, BB_NAME, bu.id, "Boss")
-				SendBossBullet(so, BB_SPRITE, bu.id, bu.sprite_index)
-			}
+			boss_bullet = instance_create_layer(boss.x,boss.y,"Enemy_Layer", obj_boss_bullet);
+			boss_bullet_timer = 0.2;
+			ds_list_add(boss_bullets_server,boss_bullet)
 		}
+			
+			for(var s = 0; s < ds_list_size(sockets); s++)
+			{
+				var so = ds_list_find_value(sockets, s)
+				for(var oo = 0; oo < ds_list_size(boss_bullets_server); oo++)
+				{
+					var bu = ds_list_find_value(boss_bullets_server, oo)
+					SendBossBullet(so, BB_X, bu.id, bu.x)
+					SendBossBullet(so, BB_Y, bu.id, bu.y)
+					SendBossBullet(so, BB_NAME, bu.id, "Bullet")
+					SendBossBullet(so, BB_SPRITE, bu.id, bu.sprite_index)
+				}
+			}
+			
+		
 		show_debug_message("boss rage");
 		
 	}

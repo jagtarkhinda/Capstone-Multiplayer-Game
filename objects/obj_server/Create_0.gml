@@ -36,6 +36,7 @@ sockets = ds_list_create()
 
 game_is_started = 0
 
+boss_bullet_timer = 0.2
 //list of walls
 walls_list = ds_list_create()
 
