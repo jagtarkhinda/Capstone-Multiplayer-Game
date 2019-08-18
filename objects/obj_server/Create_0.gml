@@ -24,7 +24,7 @@
 #macro PACKET_ENEMY1_DESTROIED	12
 #macro PACKET_COIN				13
 #macro PACKET_UPDATE_MONEY		14
-
+#macro PACKET_BOSS_ENTITY 15
 
 server = network_create_server(network_socket_tcp, PORT, MAX_CLIENTS)
 
@@ -45,6 +45,7 @@ bullets = ds_list_create()
 enemy_id = 0;
 boss = noone
 global.money = 0
+global.boss_rage = false
 enemies_done = 0
 
 

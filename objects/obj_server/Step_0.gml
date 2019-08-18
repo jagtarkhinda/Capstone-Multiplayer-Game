@@ -20,18 +20,24 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 	}
 	
 	//create boss
-	boss = instance_create_layer(room_width/2, room_width/2, "Enemy_Layer", obj_boss)
+	boss = instance_create_layer(room_width/2, room_height/2, "Enemy_Layer", obj_boss)
 	for(var s = 0; s < ds_list_size(sockets); s++){
 		var so = ds_list_find_value(sockets, s)
-		SendRemoteEntity(so, CMD_X, boss.id, boss.x)
-		SendRemoteEntity(so, CMD_Y, boss.id, boss.y)
-		SendRemoteEntity(so, CMD_NAME, boss.id, "Boss")
-		SendRemoteEntity(so, CMD_SPRITE, boss.id, boss.sprite_index)
+		SendBossEntity(so, BOSS_X, boss.id, boss.x)
+		SendBossEntity(so, BOSS_Y, boss.id, boss.y)
+		SendBossEntity(so, BOSS_NAME, boss.id, "Boss")
+		SendBossEntity(so, BOSS_SPRITE, boss.id, boss.sprite_index)
 	}
 	game_is_started = 2
-}else if(game_is_started == 2){ //game start steps
+}else if(game_is_started == 2){
+	
+	if(global.boss_rage)
+	{
+		show_debug_message("boss rage");
+	}
+	//game start steps
 	// make the enemy move
-	if(boss.left == true)
+	/*if(boss.left == true)
 	{
 		boss.x = boss.x-2;
 		boss.y = boss.y-1;
@@ -42,24 +48,24 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 		boss.y = boss.y+1;
 	}
 
-	if(boss.x <= 200)
+	if(boss.x <= room_width/2 - 300)
 	{
 		boss.right = true;
 		boss.left = false;
 	}
-	else if(boss.x >= 500)
+	else if(boss.x >= room_width/2 + 700 )
 	{
 		boss.left = true;
 		boss.right = false;
-	}
+	}*/
 	
 	for(var s = 0; s < ds_list_size(sockets); s++){ //doesnt work properly, had to create new for loops for sockets/// see later
 		var so = ds_list_find_value(sockets, s)
 		//update boss
-		SendRemoteEntity(so, CMD_X, boss.id, boss.x)
-		SendRemoteEntity(so, CMD_Y, boss.id, boss.y)
-		SendRemoteEntity(so, CMD_NAME, boss.id, "Boss")
-		SendRemoteEntity(so, CMD_SPRITE, boss.id, boss.sprite_index)
+		SendBossEntity(so, BOSS_X, boss.id, boss.x)
+		SendBossEntity(so, BOSS_Y, boss.id, boss.y)
+		SendBossEntity(so, BOSS_NAME, boss.id, "Boss")
+		SendBossEntity(so, BOSS_SPRITE, boss.id, boss.sprite_index)
 		
 		//send data about other players
 		for(var i = 0; i < instance_number(obj_Player); i++){
@@ -116,7 +122,7 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 			}else{
 				if(!enemy_i.hasPath){
 					var pos = irandom_range(1,20)
-					var current_path = asset_get_index("path" + pos);
+					var current_path = asset_get_index("path" + string(pos));
 					//starting the path
 					with(enemy_i){
 						hasPath = true

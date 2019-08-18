@@ -10,6 +10,7 @@ if(connect < 0 ){
 
 //
 entities = ds_map_create()
+boss = ds_map_create()
 bullets = ds_map_create()
 enemies1 = ds_map_create()
 coin_map = ds_map_create()

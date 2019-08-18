@@ -189,6 +189,42 @@ if socket == event_id{
 		show_debug_message("Total Coins : " + string(totcoin))
 		global.cli_money = totcoin
 	break
+	case PACKET_BOSS_ENTITY:
+			var c = buffer_read(buff, buffer_u8)
+		var e_id = buffer_read(buff, buffer_u32)
+	
+		if !ds_map_exists(boss, e_id){
+			var boss_v = instance_create_layer(0, 0, "Instances", obj_remote_boss)
+			boss_v.boss_id = e_id
+			ds_map_set(boss, e_id, boss_v)
+		}
+		
+		var p = boss[? e_id]
+		
+		switch(c){
+			case BOSS_X:
+				p.x = buffer_read(buff, buffer_s16)
+			break
+			case BOSS_Y:
+				p.y = buffer_read(buff, buffer_s16)
+			break
+			case BOSS_NAME:
+				p.name = buffer_read(buff, buffer_string)
+			break
+			case BOSS_SPRITE:
+				p.sprite_index = buffer_read(buff, buffer_u16)
+			break
+			case BOSS_DESTROY:
+				buffer_read(buff, buffer_u8)
+				ds_map_delete(entities, e_id)
+				with(p){
+					instance_destroy()
+				}
+			break
+			
+		}
+		break
+	
 }
 		
 }
