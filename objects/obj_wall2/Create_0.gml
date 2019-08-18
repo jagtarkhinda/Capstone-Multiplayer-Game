@@ -1,1 +1,2 @@
-wall2_hp = 5
+wall_hp = 20
+wall2_hp = 20

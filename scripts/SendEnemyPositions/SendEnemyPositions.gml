@@ -5,6 +5,7 @@
 #macro ENE1_DIRECTION 4
 #macro ENE1_SPEED  5
 #macro ENE1_ANGLE 6
+#macro ENE1_HP 7
 
 
 buffer_seek(buffer, buffer_seek_start, 0)
@@ -32,7 +33,10 @@ switch(argument1){
 		buffer_write(buffer, buffer_u16, argument3)
 	break
 	case ENE1_DESTROY:
-		buffer_write(buffer, buffer_u8, argument3)
+		buffer_write(buffer, buffer_u16, argument3)
+	break
+	case ENE1_HP:
+		buffer_write(buffer, buffer_s16, argument3)
 	break
 }
 

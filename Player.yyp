@@ -127,6 +127,14 @@
             }
         },
         {
+            "Key": "26397040-efc0-47d3-be85-deb07c884954",
+            "Value": {
+                "id": "0189dc47-787b-4bea-9d22-db2bf635e520",
+                "resourcePath": "objects\\obj_coin\\obj_coin.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "26816db3-8e35-4974-9a85-961777296897",
             "Value": {
                 "id": "adfbd266-3a32-45cb-8ed8-a82d04b4a20e",
@@ -183,11 +191,27 @@
             }
         },
         {
+            "Key": "355b6b94-d012-475d-b16b-aec9a132d289",
+            "Value": {
+                "id": "e7247c62-f6b0-45ee-9471-ed68a8d26b2c",
+                "resourcePath": "sprites\\spr_coin\\spr_coin.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "367c89dd-022f-4cf3-88a1-d497b5cee518",
             "Value": {
                 "id": "05725774-db73-4e94-8d73-07604f9b3ffe",
                 "resourcePath": "views\\367c89dd-022f-4cf3-88a1-d497b5cee518.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "393c1160-38cf-48ff-b69e-3541e1325a38",
+            "Value": {
+                "id": "4802a883-0e9e-44ca-8742-b465306844b9",
+                "resourcePath": "objects\\obj_remote_coin\\obj_remote_coin.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -316,6 +340,14 @@
                 "id": "23b9182d-96a6-43ff-a5e8-d71a7d82998d",
                 "resourcePath": "views\\5911c7fd-8edd-4bf9-b084-b3e8b34fe208.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "5d5734d6-f8c3-438f-94f7-973cf8115072",
+            "Value": {
+                "id": "21f2acad-471d-4d65-8a59-e3d331c13ae2",
+                "resourcePath": "scripts\\SendEnemyKilled\\SendEnemyKilled.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -591,11 +623,27 @@
             }
         },
         {
+            "Key": "c4026389-721f-40f9-8862-38b01ff79d8f",
+            "Value": {
+                "id": "8501907d-b979-4a9c-ab85-c076fa643ce6",
+                "resourcePath": "objects\\obj_remote_enemy\\obj_remote_enemy.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "c48cea4b-2c12-4c8c-a22a-b0a932b6b151",
             "Value": {
                 "id": "a9fe53a9-680a-4795-b35a-cfb9da601c03",
                 "resourcePath": "views\\c48cea4b-2c12-4c8c-a22a-b0a932b6b151.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "c59803ea-1e20-4216-9d28-e3bda3d8b3b0",
+            "Value": {
+                "id": "6d1d65b2-94c0-4bf8-905f-56fe1e8a5f07",
+                "resourcePath": "scripts\\SendNewCoin\\SendNewCoin.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -832,6 +880,7 @@
         "95a9ae0e-9b64-49bf-b104-713b246fffed",
         "d91f530f-0461-4f13-81e5-0b4045532389",
         "8cc38caa-4ced-4135-8169-e9c1af4e1be4",
+        "c59803ea-1e20-4216-9d28-e3bda3d8b3b0",
         "ebeea667-e922-4302-ab80-33396433900d",
         "ca12abb3-c03c-4763-b126-b6f84ad2d165",
         "18a316fa-9aca-4fb6-b932-4a9c0305136e",
@@ -839,6 +888,7 @@
         "dec8ec05-0cad-4d0a-bcdd-32bb7e07b509",
         "86c1580d-cc02-466d-84f5-1a315d23b8a4",
         "1fbc9508-080d-4286-b785-49b30a85011b",
+        "5d5734d6-f8c3-438f-94f7-973cf8115072",
         "ee717e7a-6e76-4e57-9736-c3ed5650f6ac"
     ],
     "tutorial": ""

@@ -5,7 +5,7 @@ if server == event_id{
 	var type = async_load[? "type"]
 	var sock = async_load[? "socket"]
 	
-	//connect
+	#region connect
 	if(type == network_type_connect){
 		//create a player, add the socket to teh list
 		ds_list_add(sockets, sock)
@@ -40,7 +40,8 @@ if server == event_id{
 		}
 	}
 	
-	//disconnect
+	#endregion disconnect
+	#region disconnect
 	if(type == network_type_disconnect){
 		p = clients[? sock]
 		
@@ -59,6 +60,8 @@ if server == event_id{
 		ds_list_delete(sockets, ds_list_find_index(sockets, sock))
 		ds_map_delete(clients, sock)
 	}
+	#endregion disconnect
+	
 }else if event_id != global.socket{
 	var sock = async_load[? "id"]
 	var buff = async_load[? "buffer"]
@@ -82,6 +85,7 @@ if server == event_id{
 			}
 		break
 		case PACKET_TANK_CHARACTER :
+			
 			if ready[sock] = false{
 				var c = buffer_read(buff, buffer_u8)
 				if ds_list_find_value(available_tanks, ds_list_find_index(available_tanks, c)) != undefined{
@@ -104,123 +108,77 @@ if server == event_id{
 				//instance_create_layer(0,0,"Instances",enemy1_spawn);
 				//adding all the enemies to ds_lis
 
-					if(ds_list_size(enemies1) < 17){
-						var missing_enemies = 17 - ds_list_size(enemies1)
-						for(var s = 0; s < missing_enemies; s++){
-							
-							//incrementing the id everytime a new enemy spawn
-							ene = instance_create_layer(762,1211,"Enemy_Layer",obj_enemy1);
-							enemy_id += 1;
-							//making each enemy follow some path
-							//setting up different path for each instance according to the current id
-							var current_path = asset_get_index("path" + string(enemy_id));
-							//starting the path
-							with(ene){
+				if(ds_list_size(enemies1) < 17 && enemies_done == 0){
+					var missing_enemies = 17 - ds_list_size(enemies1)
+					for(var s = 0; s < missing_enemies; s++){
+						//incrementing the id everytime a new enemy spawn
+						ene = instance_create_layer(762,1211,"Enemy_Layer",obj_enemy1);
+						enemy_id += 1;
+						//making each enemy follow some path
+						//setting up different path for each instance according to the current id
+						var current_path = asset_get_index("path" + string(enemy_id));
+						//starting the path
+						with(ene){
 			
-							path_start(current_path, 1, path_action_reverse,true);
-							}
-							ds_list_add(enemies1, ene)
-							
+						path_start(current_path, 1, path_action_reverse, true);
+						hasPath = true
+						}
+						ds_list_add(enemies1, ene)
 					}
+					enemies_done = 1
 				}
-				}
-				//
-
+				
+				
+			}
 		break
+		
 		case PACKET_MYID :
 			SendPlayerID(sock, sock)
 		break
 		
 		case PACKET_NEW_BULLET :
+			#region PACKET_NEW_BULLET
+			mouse_xpos = buffer_read(buff, buffer_s16)
+			mouse_ypos = buffer_read(buff, buffer_s16)
 
-		//show_debug_message("p.id: " + string(p.id));
-		//show_debug_message("p.my_id: " + string(p.my_id));
-
-		
-		mouse_xpos = buffer_read(buff, buffer_s16)
-		mouse_ypos = buffer_read(buff, buffer_s16)
-
+			b = instance_create_layer(p.x, p.y, "Bullet_Layer", obj_Bullet)
+			b.direction = point_direction(p.x, p.y, mouse_xpos, mouse_ypos);
+			b.direction = b.direction + random_range(1,1);
+			b.speed = 10;
+			b.image_angle = b.direction;
 				
-		 b = instance_create_layer(p.x, p.y, "Bullet_Layer", obj_Bullet)
-		b.direction = point_direction(p.x, p.y, mouse_xpos, mouse_ypos);
-		b.direction = b.direction + random_range(1,1);
-		b.speed = 10;
-		b.image_angle = b.direction;
-				
-		ds_map_add(bullets, sock, b)
-				
-		//update bullet to clients
-		for(var s = 0; s < ds_list_size(sockets); s++){
-			var so = ds_list_find_value(sockets, s)
-			SendBullet(so, BULL_X, b.id, b.x)
-			SendBullet(so, BULL_Y, b.id, b.y)
-			//sending the speed,angle and direction of bullet - jsk
-			SendBullet(so, BULL_DIRECTION, b.id, b.direction)
-			SendBullet(so, BULL_SPEED,b.id,b.speed)
-			SendBullet(so, BULL_ANGLE,b.id,b.image_angle)	
-			//
-			SendBullet(so, BULL_SPRITE, b.id, b.sprite_index)
-		}
-
-			/*
-			var p = clients[? sock]
-			var b = instance_create_layer(p.x, p.y+32, "Bullet_Layer", obj_Bullet)
 			ds_map_add(bullets, sock, b)
-			SendBullet(sock)*/
-		break
-		/*
-		case PACKET_BULLET_WALL :
-		var wall_id = buffer_read(buff, buffer_s16)
-		var w_hp = buffer_read(buff, buffer_s16)
-		var b_id = buffer_read(buff, buffer_s16)
-		
-		ds_list_delete(bullets, b_id)
-		
-		for(var s = 0; s < ds_list_size(sockets); s++){
-			var so = ds_list_find_value(sockets, s)
-			SendBullet(so, BULL_DESTROY, b_id, 0)
-			if(wall_hp <= 0){
-				SendUpdatedWalls(so, WALL_DESTROY, b_id, 0)
+				
+			//update bullet to clients
+			for(var s = 0; s < ds_list_size(sockets); s++){
+				var so = ds_list_find_value(sockets, s)
+				SendBullet(so, BULL_X, b.id, b.x)
+				SendBullet(so, BULL_Y, b.id, b.y)
+				SendBullet(so, BULL_DIRECTION, b.id, b.direction)
+				SendBullet(so, BULL_SPEED,b.id,b.speed)
+				SendBullet(so, BULL_ANGLE,b.id,b.image_angle)	
+				SendBullet(so, BULL_SPRITE, b.id, b.sprite_index)
 			}
-		}
+			#endregion PACKET_NEW_BULLET
+		break
 		
-		break*/
+		case PACKET_ENEMY1_DESTROIED :
+			#region PACKET_ENEMY1_DESTROIED
+			/*var en_id = buffer_read(buff, buffer_s16)
+			var en_x = buffer_read(buff, buffer_s16)
+			var en_y = buffer_read(buff, buffer_s16)
 		
-	/*	
-		case PACKET_ENEMY1_POSITION :
+			for(var en = 0; en < ds_list_size(enemies1); en++){
+				var enemy = ds_list_find_value(enemies1, en)
+				with(enemy){
+					show_debug_message("create coin")
+					SendEnemyPositions(so, ENE1_DESTROY, enemy.id, 0)
+					instance_destroy()
+				}
+			}*/
+			#endregion PACKET_ENEMY1_DESTROIED
+		break
 
-		//show_debug_message("p.id: " + string(p.id));
-		//show_debug_message("p.my_id: " + string(p.my_id));
-
-		
-		ene1xx = buffer_read(buff, buffer_s16)
-		ene1yy = buffer_read(buff, buffer_s16)
-
-				
-		// b = instance_create_layer(p.x, p.y, "Bullet_Layer", obj_Bullet)
-		
-				
-		//ds_map_add(bullets, sock, b)
-				
-		//update bullet to clients
-		for(var s = 0; s < ds_list_size(sockets); s++){
-			var so = ds_list_find_value(sockets, s)
-			SendEnemyPositions(so, ENE1_X, enemy.id, enemy.x)
-			SendEnemyPositions(so,ENE1_SPEED,enemy.id,2)
-			SendEnemyPositions(so, ENE1_Y, enemy.id, enemy.y)
-		//	SendEnemyPositions(so, ENE1_NAME, enemy.id, "Enemy")
-			SendEnemyPositions(so, ENE1_SPRITE, enemy.id, enemy.sprite_index)
-		}
-
-			/*
-			var p = clients[? sock]
-			var b = instance_create_layer(p.x, p.y+32, "Bullet_Layer", obj_Bullet)
-			ds_map_add(bullets, sock, b)
-			SendBullet(sock)*/
-		//break
-		//////
-		
-		
 	}
 	
 }

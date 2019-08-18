@@ -17,5 +17,7 @@ enemy1_speed = 1.5;
 if(instance_exists(obj_server)){
 	visible = false //remove the sprite duplication on the player host
 }
+
 monsterMaxHp = 20
 monsterHp = monsterMaxHp
+hasPath = false

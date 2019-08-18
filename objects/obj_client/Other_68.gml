@@ -54,7 +54,6 @@ if socket == event_id{
 	break
 	//getting data about bullet
 	case PACKET_NEW_BULLET :
-
 		var c = buffer_read(buff, buffer_u8)
 		var b_id = buffer_read(buff, buffer_u32)
 		if !ds_map_exists(bullets, b_id){
@@ -63,7 +62,6 @@ if socket == event_id{
 		}
 		
 		var b = bullets[? b_id]
-		
 		switch(c){
 			case BULL_X:
 				b.x = buffer_read(buff, buffer_s16)
@@ -93,7 +91,6 @@ if socket == event_id{
 		}
 	break
 	
-///// ADDED - JSK
 	//getting the enemy positions
 	case PACKET_ENEMY1_POSITION :
 
@@ -101,58 +98,89 @@ if socket == event_id{
 		var ene_id = buffer_read(buff, buffer_u32)
 		
 		if !ds_map_exists(enemies1, ene_id){
-			var b = instance_create_layer(0, 0, "Enemy_Layer", obj_remote_entity)
-			ds_map_set(enemies1, ene_id, b)
+			var t = instance_create_layer(0, 0, "Enemy_Layer", obj_remote_enemy)
+			t.enemy_Uid = ene_id
+			ds_map_set(enemies1, ene_id, t)
 		}
 		
-		var en1 = enemies1[? ene_id]
+		var enemy = enemies1[? ene_id]
+		
 		
 		switch(c){
 			case ENE1_X:
-				en1.x = buffer_read(buff, buffer_s16)
+				enemy.x = buffer_read(buff, buffer_s16)
 			break
 			case ENE1_Y:
-				en1.y = buffer_read(buff, buffer_s16)
+				enemy.y = buffer_read(buff, buffer_s16)
 			break
 			case ENE1_SPRITE:
-				en1.sprite_index = buffer_read(buff, buffer_u16)
+				enemy.sprite_index = buffer_read(buff, buffer_u16)
 			break
 			case ENE1_SPEED:
-				en1.speed = buffer_read(buff, buffer_u16)
+				enemy.speed = buffer_read(buff, buffer_u16)
 			break
-			case BULL_DESTROY:
-				buffer_read(buff, buffer_u8)
-				ds_map_delete(bullets, b_id)
-				with(b){
+			case ENE1_DESTROY:
+				buffer_read(buff, buffer_u16)
+				show_debug_message("CLIENT 1 - Shooted monster id: " + string(ene_id))
+				show_debug_message("CLIENT 1 - Shooted monster Hp: " + string(enemy.monsterHp))
+				//with(instance_find(obj_remote_enemy, ene_id)){
+				
+				show_debug_message("CLIENT 1 - enemies1 size: " + string(ds_map_size(enemies1)))
+				var num_en = instance_number(obj_remote_enemy)
+				show_debug_message("CLIENT 1 - num_en: " + string(num_en));
+				ds_map_delete(enemies1, ene_id)
+				
+				enemy.visible = false
+				instance_destroy(enemy.id);
+				/*with(enemy){
+					show_debug_message("CLIENT 2 - Shooted monster id: " + string(id))
+					show_debug_message("CLIENT 2 - Shooted monster enemy_Uid: " + string(enemy_Uid))
+					show_debug_message("CLIENT 2 - Shooted monster Hp: " + string(monsterHp))
 					instance_destroy()
-				}
+				}*/
+				show_debug_message("CLIENT 2 - enemies1 size: " + string(ds_map_size(enemies1)))
+				num_en = instance_number(obj_remote_enemy)
+				show_debug_message("CLIENT 2 - num_en: " + string(num_en));
+			
+			break
+			case ENE1_HP:
+				enemy.monsterHp = buffer_read(buff, buffer_s16)
 			break
 		}
-		
 	break
-	case PACKET_BULLET_WALL :
-		show_debug_message("GOT HERE");
+	
+	case PACKET_COIN:
+		show_debug_message("CLIENT coin ");
 		var c = buffer_read(buff, buffer_u8)
+		var coin_id = buffer_read(buff, buffer_u32)
 		
-		var w_id = buffer_read(buff, buffer_s32)
-		var wall = instance_find(obj_Wall, w_id)
-		show_debug_message("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-		show_debug_message("c: " + string(c));
-		show_debug_message("w_id: " + string(w_id));
-		show_debug_message("wall: " + string(wall));
+		if !ds_map_exists(coin_map, coin_id){
+			var t = instance_create_layer(0, 0, "Coin_Layer", obj_remote_coin)
+			t.coin_Uid = coin_id
+			ds_map_set(coin_map, coin_id, t)
+		}
+		var coin = coin_map[? coin_id]
 		
-		
+		show_debug_message("CLIENT - coin.id: " + string(coin.id));
+		show_debug_message("CLIENT - coin.UId: " + string(coin.coin_Uid));
 		switch(c){
-			case WALL_SPRITE:
-				wall.sprite_index = buffer_read(buff, buffer_u16)
+			case COIN_X:
+				coin.x = buffer_read(buff, buffer_s16)
 			break
-			case WALL_DESTROY:
-				with(wall){
-					wall.visible = false
-					show_debug_message("wall.x: " + string(wall.x));
-					show_debug_message("wall.y: " + string(wall.y));
-					instance_destroy()
-				}
+			case COIN_Y:
+				coin.y = buffer_read(buff, buffer_s16)
+			break
+			case COIN_SPRITE:
+				coin.sprite_index = buffer_read(buff, buffer_u16)
+			break
+			case COIN_DESTROY:
+				buffer_read(buff, buffer_u16)
+
+				//var num_en = instance_number(obj_remote_enemy)
+				ds_map_delete(coin_map, coin_id)
+				
+				coin.visible = false
+				instance_destroy(coin.id);
 			break
 		}
 	break

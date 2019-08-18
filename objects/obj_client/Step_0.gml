@@ -75,25 +75,25 @@ if(playing){
 	cooldown = cooldown - 1;
 	
 	
-	//making enemies follow the player -JSK
-			
-					
-		/*			for(var en = 0; en < ds_list_size(enemies1); en++)
-					{
-						var enemy_i = ds_list_find_value(enemies1, en)
-						with(enemy_i)
-						{
-							if (distance_to_object(obj_Player) < 200)
-							{
-								path_end();
-								move_towards_point(obj_Player.x,obj_Player.y,1);
-								SendFollow(PACKET_ENEMY1_POSITION,enemy_i.x,enemy_i.y)	
-							}
-						}
-					
-					}
+	/*---------------- enemies -------------------------*/
+	/*
+	var e_number = instance_number(obj_remote_enemy)
+	for(var en = 0; en < e_number; en++)
+	{
+		var rem_enemy = instance_find(obj_remote_enemy, en)
+		with(rem_enemy)
+		{
+			if (monsterHp <= 0)
+			{
+				SendEnemyKilled(PACKET_ENEMY1_DESTROIED, rem_enemy.enemy_Uid, rem_enemy.x, rem_enemy.y)
+				
+				//instance_destroy()
+			}
+		}		
+	}
 	*/
-	///////////////////////////////////
+	/*---------------- end enemies -------------------------*/
+
 	
 }else{
 	if(keyboard_check_pressed(vk_left)){
