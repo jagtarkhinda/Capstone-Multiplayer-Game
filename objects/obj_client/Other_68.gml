@@ -221,10 +221,49 @@ if socket == event_id{
 					instance_destroy()
 				}
 			break
-			
 		}
 		break
+			case PACKET_BOSS_BULLET:
+			var c = buffer_read(buff, buffer_u8)
+		var bb_id = buffer_read(buff, buffer_u32)
 	
+		if !ds_map_exists(boss_bullets, bb_id){
+			var boss_b = instance_create_layer(0, 0, "Instances", obj_remote_boss_bullet)
+			boss_b.boss_bullet_id = bb_id
+			ds_map_set(boss_bullets, bb_id, boss_b)
+			
+			show_debug_message("receive_bullet with id" + string (bb_id));
+		}
+		
+		
+		var bb = boss_bullets[? bb_id]
+		
+		switch(c){
+			case BB_X:
+				bb.x = buffer_read(buff, buffer_s16)
+			break
+			case BB_Y:
+				bb.y = buffer_read(buff, buffer_s16)
+			break
+			case BB_NAME:
+				bb.name = buffer_read(buff, buffer_string)
+			break
+			case BB_SPRITE:
+				bb.sprite_index = buffer_read(buff, buffer_u16)
+			break
+			case BB_DESTROY:
+				buffer_read(buff, buffer_u8)
+				ds_map_delete(boss_bullets, e_id)
+				with(bb){
+					instance_destroy()
+				}
+		
+			break
+		}	
+		
+		break
+
+		
 }
 		
 }

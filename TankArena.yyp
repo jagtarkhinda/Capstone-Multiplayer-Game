@@ -255,6 +255,14 @@
             }
         },
         {
+            "Key": "45bcac39-8ebf-4da3-90fd-23605a023f5e",
+            "Value": {
+                "id": "de65bd0f-c9be-493a-b56d-659f02c24805",
+                "resourcePath": "objects\\obj_boss_bullet\\obj_boss_bullet.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "4614f350-a81b-40b7-a886-0364b3da0adb",
             "Value": {
                 "id": "c258ddfb-48de-4391-aea6-89a28427c0ea",
@@ -375,10 +383,34 @@
             }
         },
         {
+            "Key": "6349586d-72d5-45e4-bcf8-8cfaca6659f5",
+            "Value": {
+                "id": "b065f598-1b19-4954-b932-1ea2d4f0e85b",
+                "resourcePath": "scripts\\SendBossBullet\\SendBossBullet.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "636a0382-58ff-40ac-aa8e-8e42620591a9",
+            "Value": {
+                "id": "328ce67d-8b1a-4ac2-88e6-8ef50d3b9331",
+                "resourcePath": "sprites\\spr_boss_bullet\\spr_boss_bullet.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "66ed181d-a5b9-4f1e-9757-3d2555f84c7b",
             "Value": {
                 "id": "c5b3335a-8922-4a8a-8169-8b9c368f3323",
                 "resourcePath": "objects\\obj_boss\\obj_boss.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "6ee843e6-dd98-43ca-bbfb-0182fa684450",
+            "Value": {
+                "id": "f7d9ab0a-8189-4444-b138-3ffd1620feae",
+                "resourcePath": "objects\\obj_remote_boss_bullet\\obj_remote_boss_bullet.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -923,6 +955,7 @@
         "c59803ea-1e20-4216-9d28-e3bda3d8b3b0",
         "120e4a46-c670-4041-a086-ac3f4a1cd2e5",
         "cf795180-d5ea-4230-b237-8d02f32df770",
+        "6349586d-72d5-45e4-bcf8-8cfaca6659f5",
         "ebeea667-e922-4302-ab80-33396433900d",
         "ca12abb3-c03c-4763-b126-b6f84ad2d165",
         "18a316fa-9aca-4fb6-b932-4a9c0305136e",

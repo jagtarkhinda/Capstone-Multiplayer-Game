@@ -9,22 +9,23 @@
 #macro TANK_CHARACTER_YELLOW	3
 
 //packets
-#macro PACKET_KEY		0
-#macro PACKET_ENTITY	1
-#macro PACKET_NAME		2
-#macro PACKET_TANK_CHARACTER 3
-#macro PACKET_PLAY		4
-#macro PACKET_PICKED	5
-#macro PACKET_MYID		6
-#macro PACKET_NEW_BULLET	7
-#macro PACKET_ENEMY1_POSITION 8
-#macro PACKET_ENEMYF_FOLLOW 9
-#macro PACKET_BULLET_WALL 10
-#macro PACKET_BULLET_WALL2 11
+#macro PACKET_KEY				0
+#macro PACKET_ENTITY			1
+#macro PACKET_NAME				2
+#macro PACKET_TANK_CHARACTER	3
+#macro PACKET_PLAY				4
+#macro PACKET_PICKED			5
+#macro PACKET_MYID				6
+#macro PACKET_NEW_BULLET		7
+#macro PACKET_ENEMY1_POSITION	8
+#macro PACKET_ENEMYF_FOLLOW		9
+#macro PACKET_BULLET_WALL		10
+#macro PACKET_BULLET_WALL2		11
 #macro PACKET_ENEMY1_DESTROIED	12
 #macro PACKET_COIN				13
 #macro PACKET_UPDATE_MONEY		14
-#macro PACKET_BOSS_ENTITY 15
+#macro PACKET_BOSS_ENTITY		15
+#macro PACKET_BOSS_BULLET		16
 
 server = network_create_server(network_socket_tcp, PORT, MAX_CLIENTS)
 
@@ -42,10 +43,12 @@ walls_list = ds_list_create()
 enemies1 = ds_list_create()
 
 bullets = ds_list_create()
+boss_bullets_server = ds_list_create()
 enemy_id = 0;
 boss = noone
 global.money = 0
 global.boss_rage = false
+global.current_level = 0;
 enemies_done = 0
 
 
