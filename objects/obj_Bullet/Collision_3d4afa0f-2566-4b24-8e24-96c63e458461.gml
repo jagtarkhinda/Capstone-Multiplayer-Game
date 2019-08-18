@@ -8,4 +8,4 @@
 //SendWallUpdate(PACKET_BULLET_WALL, wall_cur_id, wall_hp, id)
 
 
-//instance_destroy();
+instance_destroy();

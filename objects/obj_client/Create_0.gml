@@ -20,7 +20,7 @@ cooldown = 0;
 //char = get_integer("Character from 0 to 5", 0)
 //SendTankCharacter(char)
 playing = false
-
+global.cli_money = 0
 picked[0] = false
 picked[1] = false
 picked[2] = false

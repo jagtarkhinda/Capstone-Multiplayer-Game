@@ -94,6 +94,26 @@ if(playing){
 	*/
 	/*---------------- end enemies -------------------------*/
 
+	var c_number = instance_number(obj_remote_coin)
+	for (var k = ds_map_find_first(coin_map); !is_undefined(k); k = ds_map_find_next(coin_map, k)) {
+		//var v = coin_map[? k];
+		/* Use k, v here */
+		for(var c = 0; c < c_number; c++)
+		{
+			var rem_coin = instance_find(obj_remote_coin, c)
+			//instance_destroy(c)
+			var found_coin = false
+			var v = coin_map[? k];
+			if(v.id == rem_coin.id){
+				found_coin = true
+			}
+		}
+		
+		if(!found_coin){
+			ds_map_delete(coin_map,k)
+		}
+	}
+	
 	
 }else{
 	if(keyboard_check_pressed(vk_left)){

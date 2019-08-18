@@ -129,6 +129,12 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 			}
 		}
 		
+		//Update the total money collected
+		for(var w = 0; w < ds_list_size(sockets); w++){
+			var soc = ds_list_find_value(sockets, w)
+			UpdateMoney(soc, global.money)
+		}
+		
 		//update enemies
 		for(var en = 0; en < ds_list_size(enemies1); en++){
 			var enemy = ds_list_find_value(enemies1, en)

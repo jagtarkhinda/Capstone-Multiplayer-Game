@@ -39,6 +39,14 @@
             }
         },
         {
+            "Key": "120e4a46-c670-4041-a086-ac3f4a1cd2e5",
+            "Value": {
+                "id": "b1da91b8-341c-48ec-89e9-980246d0cf87",
+                "resourcePath": "scripts\\UpdateMoney\\UpdateMoney.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "18a306d6-21f3-492c-b743-f0b9f4ae03f4",
             "Value": {
                 "id": "ab8772ea-0175-4d9e-933a-1ccfac4c7645",
@@ -881,6 +889,7 @@
         "d91f530f-0461-4f13-81e5-0b4045532389",
         "8cc38caa-4ced-4135-8169-e9c1af4e1be4",
         "c59803ea-1e20-4216-9d28-e3bda3d8b3b0",
+        "120e4a46-c670-4041-a086-ac3f4a1cd2e5",
         "ebeea667-e922-4302-ab80-33396433900d",
         "ca12abb3-c03c-4763-b126-b6f84ad2d165",
         "18a316fa-9aca-4fb6-b932-4a9c0305136e",
