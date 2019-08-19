@@ -137,3 +137,41 @@ if(playing){
 
 char = clamp(char, 0, TANK_CHARACTER_YELLOW)
 
+/*
+var c_number = instance_number(obj_remote_coin)
+	for (var k = ds_map_find_first(coin_map); !is_undefined(k); k = ds_map_find_next(coin_map, k)) {
+		//var v = coin_map[? k];
+		/* Use k, v here 
+		for(var c = 0; c < c_number; c++)
+		{
+			var rem_coin = instance_find(obj_remote_coin, c)
+			//instance_destroy(c)
+			var found_coin = false
+			var v = coin_map[? k];
+			if(v.id == rem_coin.id){
+				found_coin = true
+			}
+		}
+		
+		if(!found_coin){
+			ds_map_delete(coin_map,k)
+		}
+	}
+*//*
+	var b_number = instance_number(obj_remote_boss_bullet)
+	for (var k = ds_map_find_first(boss_bullets); !is_undefined(k); k = ds_map_find_next(boss_bullets, k)) {
+		var found_bullet = false
+		for(var c = 0; c < b_number; c++)
+		{
+			var b_bullet = instance_find(obj_remote_boss_bullet, c)
+			//instance_destroy(c)
+			var v = boss_bullets[? k];
+			if(v.id == b_bullet.id){
+				found_bullet = true
+			}
+		}
+		
+		if(!found_bullet){
+			ds_map_delete(boss_bullets,k)
+		}
+	}*/

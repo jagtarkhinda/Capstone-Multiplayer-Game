@@ -253,11 +253,10 @@ if socket == event_id{
 			break
 			case BB_DESTROY:
 				buffer_read(buff, buffer_u8)
-				ds_map_delete(boss_bullets, e_id)
+				ds_map_delete(boss_bullets, bb_id)
 				with(bb){
 					instance_destroy()
 				}
-		
 			break
 		}	
 		

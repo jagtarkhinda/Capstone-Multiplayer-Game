@@ -44,47 +44,47 @@ if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 			boss_bullet_timer = 0.2;
 			ds_list_add(boss_bullets_server,boss_bullet)
 		}
+		
+		
 			
-			for(var s = 0; s < ds_list_size(sockets); s++)
-			{
-				var so = ds_list_find_value(sockets, s)
-				for(var oo = 0; oo < ds_list_size(boss_bullets_server); oo++)
+			//update bullets everywhere
+			for(var oo = 0; oo < ds_list_size(boss_bullets_server); oo++)
 				{
 					var bu = ds_list_find_value(boss_bullets_server, oo)
-					SendBossBullet(so, BB_X, bu.id, bu.x)
-					SendBossBullet(so, BB_Y, bu.id, bu.y)
-					SendBossBullet(so, BB_NAME, bu.id, "Bullet")
-					SendBossBullet(so, BB_SPRITE, bu.id, bu.sprite_index)
-				}
+				//	var ww = instance_find(obj_boss_bullet, bu)
+					if(bu.bb_hp <= 0)
+					{
+						ds_list_delete(boss_bullets_server, oo)
+						for(var w = 0; w < ds_list_size(sockets); w++)
+						{
+								var soc = ds_list_find_value(sockets, w)
+								//send to destroy client side enemy
+								SendBossBullet(soc, BB_DESTROY, bu.id,0)
+						}
+						
+						with(bu){
+							instance_destroy()
+						}
+					}
+						else if(instance_exists(bu))
+						{
+							for(var s = 0; s < ds_list_size(sockets); s++)
+							{
+								var so = ds_list_find_value(sockets, s)
+								SendBossBullet(so, BB_X, bu.id, bu.x)
+								SendBossBullet(so, BB_Y, bu.id, bu.y)
+								SendBossBullet(so, BB_NAME, bu.id, "Bullet")
+								SendBossBullet(so, BB_SPRITE, bu.id, bu.sprite_index)
+							}
+						}
+					
 			}
 			
 		
 		show_debug_message("boss rage");
 		
 	}
-	//game start steps
-	// make the enemy move
-	/*if(boss.left == true)
-	{
-		boss.x = boss.x-2;
-		boss.y = boss.y-1;
-	}
-	else if (boss.right == true)
-	{
-		boss.x = boss.x+2;
-		boss.y = boss.y+1;
-	}
-
-	if(boss.x <= room_width/2 - 300)
-	{
-		boss.right = true;
-		boss.left = false;
-	}
-	else if(boss.x >= room_width/2 + 700 )
-	{
-		boss.left = true;
-		boss.right = false;
-	}*/
+	
 	
 	for(var s = 0; s < ds_list_size(sockets); s++){ //doesnt work properly, had to create new for loops for sockets/// see later
 		var so = ds_list_find_value(sockets, s)
