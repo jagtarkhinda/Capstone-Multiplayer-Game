@@ -113,7 +113,7 @@ if(playing){
 	//show_debug_message("mouse_x: " + string(mouse_x));
 	//show_debug_message("mouse_y: " + string(mouse_y));show_debug_message("mouse_y: " + string(mouse_y));
  
-	if (mouse_check_button(mb_left) || gamepad_button_check(0,gp_shoulderrb)) && (cooldown < 1) {
+	if (mouse_check_button(mb_left) || gamepad_button_check(0,gp_shoulderr)) && (cooldown < 1) {
 		cooldown = 10;
 		SendNewBullet(PACKET_NEW_BULLET, mouse_x, mouse_y)
 	}
@@ -161,21 +161,21 @@ if(playing){
 	
 	
 }else{
-	if(keyboard_check_pressed(vk_left)){
+	if(keyboard_check_pressed(vk_left) || gamepad_button_check_pressed(0,gp_padl)){
 		char -- 
 	}
-	if(keyboard_check_pressed(vk_right)){
+	if(keyboard_check_pressed(vk_right) || gamepad_button_check_pressed(0,gp_padr)){
 		char ++
 	}
 	
-	if(keyboard_check_pressed(vk_up)){
+	if(keyboard_check_pressed(vk_up) || gamepad_button_check_pressed(0,gp_padu)){
 		char -= 3 
 	}
-	if(keyboard_check_pressed(vk_down)){
+	if(keyboard_check_pressed(vk_down) || gamepad_button_check_pressed(0,gp_padd)){
 		char += 3
 	}
 	
-	if(keyboard_check_pressed(vk_enter)){
+	if(keyboard_check_pressed(vk_enter) || gamepad_button_check_pressed(0,gp_face1)){
 		SendTankCharacter(char)
 	}
 }
