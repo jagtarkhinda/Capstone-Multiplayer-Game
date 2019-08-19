@@ -25,3 +25,5 @@ HandleSprites(char)
 playerMaxhp = 100
 playerhp =  playerMaxhp
 
+//controller = 0
+

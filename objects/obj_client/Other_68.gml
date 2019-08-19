@@ -186,7 +186,7 @@ if socket == event_id{
 	break
 	case PACKET_UPDATE_MONEY:
 		totcoin = buffer_read(buff, buffer_s16)
-		show_debug_message("Total Coins : " + string(totcoin))
+		//show_debug_message("Total Coins : " + string(totcoin))
 		global.cli_money = totcoin
 	break
 	case PACKET_BOSS_ENTITY:
