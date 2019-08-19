@@ -8,6 +8,8 @@ if(connect < 0 ){
 	game_restart()
 }
 
+global.wait_for_host = true
+
 //
 entities = ds_map_create()
 boss = ds_map_create()

@@ -239,6 +239,14 @@
             }
         },
         {
+            "Key": "40114978-a4e9-4d78-b27b-91ae3a37f70d",
+            "Value": {
+                "id": "f97890f8-a18d-4493-af55-187de46a6cc5",
+                "resourcePath": "sprites\\spr_weapon_box\\spr_weapon_box.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "44eea813-899e-4631-9b63-0fe77ee94330",
             "Value": {
                 "id": "259e8b8c-b81f-40a4-8fef-efe95d8d5f47",
@@ -439,6 +447,14 @@
             }
         },
         {
+            "Key": "7da867bd-2820-4364-9f81-57fc9f01c642",
+            "Value": {
+                "id": "fe35c040-c012-46df-8df9-45e3d05fdfb0",
+                "resourcePath": "objects\\obj_weapon\\obj_weapon.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "7e093a2a-e51c-4a1e-9a53-f9080d38730b",
             "Value": {
                 "id": "b6cb780f-13b4-494b-9c40-2a9054f3e7c8",
@@ -556,6 +572,14 @@
                 "id": "59fd8430-e7f7-4133-9042-59bd6d32d1db",
                 "resourcePath": "tilesets\\til_level1\\til_level1.yy",
                 "resourceType": "GMTileSet"
+            }
+        },
+        {
+            "Key": "9b7d645a-1c48-478f-a692-e3f40bdec415",
+            "Value": {
+                "id": "4a1d7f75-6cea-47d1-ad05-285f1ba17741",
+                "resourcePath": "scripts\\SendWaitIsDone\\SendWaitIsDone.yy",
+                "resourceType": "GMScript"
             }
         },
         {
@@ -956,6 +980,7 @@
         "120e4a46-c670-4041-a086-ac3f4a1cd2e5",
         "cf795180-d5ea-4230-b237-8d02f32df770",
         "6349586d-72d5-45e4-bcf8-8cfaca6659f5",
+        "9b7d645a-1c48-478f-a692-e3f40bdec415",
         "ebeea667-e922-4302-ab80-33396433900d",
         "ca12abb3-c03c-4763-b126-b6f84ad2d165",
         "18a316fa-9aca-4fb6-b932-4a9c0305136e",

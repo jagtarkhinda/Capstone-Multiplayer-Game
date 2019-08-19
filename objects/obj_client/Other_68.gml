@@ -41,6 +41,9 @@ if socket == event_id{
 			case CMD_MYID:
 				p.my_id = buffer_read(buff, buffer_u8)
 			break
+			case CMD_PLAYER_HP:
+				p.playerhp = buffer_read(buff, buffer_s16)
+			break
 		}
 	break
 	case PACKET_PLAY :

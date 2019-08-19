@@ -26,6 +26,19 @@
 #macro PACKET_UPDATE_MONEY		14
 #macro PACKET_BOSS_ENTITY		15
 #macro PACKET_BOSS_BULLET		16
+#macro PACKET_WAIT_DONE			17
+
+var invalid_number = true
+while(invalid_number){
+	global.max_players = get_string("Enter a valid number of max players", "")
+	
+	if(global.max_players == "1" || global.max_players == "2" || global.max_players == "3" || global.max_players == "4"){
+		invalid_number = false
+	}
+}
+global.players_picked = 0
+
+
 
 server = network_create_server(network_socket_tcp, PORT, MAX_CLIENTS)
 
@@ -39,6 +52,9 @@ game_is_started = 0
 boss_bullet_timer = 0.2
 //list of walls
 walls_list = ds_list_create()
+
+//weapons list
+weapons_list = ds_list_create()
 
 //to store enemies
 enemies1 = ds_list_create()

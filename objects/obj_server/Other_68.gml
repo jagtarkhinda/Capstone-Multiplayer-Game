@@ -59,6 +59,7 @@ if server == event_id{
 		
 		ds_list_delete(sockets, ds_list_find_index(sockets, sock))
 		ds_map_delete(clients, sock)
+		global.players_picked --
 	}
 	#endregion disconnect
 	
@@ -102,6 +103,7 @@ if server == event_id{
 						SendPicked(so, c, true)
 					}
 					ds_list_delete(available_tanks, ds_list_find_index(available_tanks, c))	
+					global.players_picked ++
 				}
 				
 				//if the player has selected the tank , we will update the enemies sprites -jsk
