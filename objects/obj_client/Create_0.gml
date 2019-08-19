@@ -33,3 +33,5 @@ target = noone
 image_speed = .1
 
 SendMyId()
+
+controller = 0
