@@ -55,6 +55,14 @@
             }
         },
         {
+            "Key": "0b6431c1-63ca-4a2c-a8ca-8fb7cff6437a",
+            "Value": {
+                "id": "458e97a7-f9bb-40ea-94bb-3689aebb7c4b",
+                "resourcePath": "sprites\\spr_end_wall\\spr_end_wall.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "120e4a46-c670-4041-a086-ac3f4a1cd2e5",
             "Value": {
                 "id": "b1da91b8-341c-48ec-89e9-980246d0cf87",

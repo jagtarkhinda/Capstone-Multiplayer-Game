@@ -30,10 +30,7 @@ if(global.max_players == global.players_picked){
 			rand_y = irandom(room_height);
 			if(place_free(rand_x, rand_y) && place_free(rand_x+32, rand_y) && place_free(rand_x-32, rand_y) && place_free(rand_x, rand_y+32) && place_free(rand_x, rand_y-32) && place_free(rand_x+32, rand_y+32) && place_free(rand_x-32, rand_y-32)){
 				var wea = instance_create_layer(rand_x, rand_y, "Instances", obj_weapon)
-				//show_debug_message("Coords - IN:" + string(rand_x) + " - "+ string(rand_y))
 				wea.weapon_type_id = auxW
-				show_debug_message("auxW:" + string(auxW))
-				//show_debug_message("auxW:" + string(wea.weapon_obj_id))
 				switch(auxW){
 					case 0:
 						wea.weapon_name = "Dual Bullet"
@@ -75,10 +72,11 @@ if(global.max_players == global.players_picked){
 	else if(game_is_started == 2){
 			game_timer -= delta_time/1000000; //every secound
 			//boos shooting
-			if(game_timer <= 0)
+			if(game_timer <= 0 && global.boss_rage)
 			{
 				game_timer = 30;
-				
+				//increase boss hp
+				//increase enemy hp
 			}
 	
 	
