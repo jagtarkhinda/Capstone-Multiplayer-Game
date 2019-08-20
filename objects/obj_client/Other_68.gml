@@ -30,6 +30,16 @@ if socket == event_id{
 			case CMD_SPRITE:
 				p.sprite_index = buffer_read(buff, buffer_u16)
 			break
+			case CMD_HP:
+				p.playerhp = buffer_read(buff, buffer_s16)
+				show_debug_message("Player hp" + string(p.playerhp))
+				show_debug_message("Player idd " + string(p.id))
+				/*if(p.playerhp <=  0)
+				{
+					global.playerisdead = true
+					show_debug_message("Client player hit");
+				}*/
+			break
 			case CMD_DESTROY:
 				buffer_read(buff, buffer_u8)
 				ds_map_delete(entities, e_id)
@@ -38,11 +48,17 @@ if socket == event_id{
 				}
 				
 			break
+			case CMD_DISABLE:
+				buffer_read(buff, buffer_u8)
+				//show_debug_message("id from server " + string(e_id) + " id from client "+  string(p.my_Uid));
+				if(p.my_id == my_id)
+				{
+					
+					global.playerisdead = true;	
+				}
+			break
 			case CMD_MYID:
 				p.my_id = buffer_read(buff, buffer_u8)
-			break
-			case CMD_PLAYER_HP:
-				p.playerhp = buffer_read(buff, buffer_s16)
 			break
 		}
 	break

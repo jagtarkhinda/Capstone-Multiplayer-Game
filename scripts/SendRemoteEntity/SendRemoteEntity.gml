@@ -4,7 +4,8 @@
 #macro CMD_SPRITE	3
 #macro CMD_DESTROY	4
 #macro CMD_MYID		5
-#macro CMD_PLAYER_HP 6
+#macro CMD_HP       6
+#macro CMD_DISABLE  7
 
 buffer_seek(buffer, buffer_seek_start, 0)
 buffer_write(buffer, buffer_u8, PACKET_ENTITY)
@@ -30,8 +31,11 @@ switch(argument1){
 	case CMD_MYID:
 		buffer_write(buffer, buffer_u8, argument3)
 	break
-	case CMD_PLAYER_HP:
+	case CMD_HP:
 		buffer_write(buffer, buffer_s16, argument3)
+	break
+	case CMD_DISABLE:
+	buffer_write(buffer, buffer_u8, argument3)
 	break
 }
 

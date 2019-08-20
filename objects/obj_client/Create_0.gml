@@ -20,7 +20,7 @@ coin_map = ds_map_create()
 SendName(global.name)
 char = 0
 cooldown = 0;
-
+global.playerisdead = false
 //char = get_integer("Character from 0 to 5", 0)
 //SendTankCharacter(char)
 playing = false

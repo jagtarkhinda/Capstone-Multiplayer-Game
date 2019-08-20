@@ -27,6 +27,7 @@
 #macro PACKET_BOSS_ENTITY		15
 #macro PACKET_BOSS_BULLET		16
 #macro PACKET_WAIT_DONE			17
+#macro PACKET_BOSS_BULLET_HIT    31
 
 var invalid_number = true
 while(invalid_number){

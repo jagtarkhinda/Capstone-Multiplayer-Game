@@ -9,7 +9,7 @@ if(global.max_players == global.players_picked){
 			SendRemoteEntity(so, CMD_X, player.id, player.x)
 			SendRemoteEntity(so, CMD_Y, player.id, player.y)
 			SendRemoteEntity(so, CMD_SPRITE, player.id, player.sprite_index)
-			SendRemoteEntity(so, CMD_PLAYER_HP, player.id, player.sprite_index)
+			//SendRemoteEntity(so, CMD_PLAYER_HP, player.id, player.sprite_index)
 		}
 	}
 
@@ -66,6 +66,24 @@ if(global.max_players == global.players_picked){
 		global.current_level = 1;
 	}else if(game_is_started == 2){
 	
+		//send hp about other players
+		for(var i = 0; i < instance_number(obj_Player); i++)
+		{
+			var player = instance_find(obj_Player, i)
+			for(var s = 0; s < ds_list_size(sockets); s++)
+			{
+				var so = ds_list_find_value(sockets, s)
+				if(player.playerhp <=  0)
+				{
+					SendRemoteEntity(so,CMD_HP,player.id,player.playerhp)
+					SendRemoteEntity(so,CMD_DISABLE,player.id,0)
+				}
+				else{
+					SendRemoteEntity(so,CMD_HP,player.id,player.playerhp)
+					//show_debug_message("Player hp now " + string(player.playerhp))
+				}
+			}
+		}
 
 		if(global.boss_rage && global.current_level == 1)
 		{
