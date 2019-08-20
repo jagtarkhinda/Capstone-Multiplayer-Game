@@ -535,6 +535,14 @@
             }
         },
         {
+            "Key": "90b14262-3732-40c4-981a-6c8c218d8385",
+            "Value": {
+                "id": "64279345-938a-4982-a8fa-917d5a99a158",
+                "resourcePath": "objects\\obj_remote_weapon\\obj_remote_weapon.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "913b1713-ae1f-4aea-a093-600f749ca938",
             "Value": {
                 "id": "d14b1353-745d-42a7-b09d-30d286bd449a",
@@ -579,6 +587,14 @@
             "Value": {
                 "id": "4a1d7f75-6cea-47d1-ad05-285f1ba17741",
                 "resourcePath": "scripts\\SendWaitIsDone\\SendWaitIsDone.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "9c4a5fba-c15f-45ba-a505-43aebacde20b",
+            "Value": {
+                "id": "162caaf5-253e-4f93-a00a-8f021bc23c25",
+                "resourcePath": "scripts\\SendWeaponDrop\\SendWeaponDrop.yy",
                 "resourceType": "GMScript"
             }
         },
@@ -981,6 +997,7 @@
         "cf795180-d5ea-4230-b237-8d02f32df770",
         "6349586d-72d5-45e4-bcf8-8cfaca6659f5",
         "9b7d645a-1c48-478f-a692-e3f40bdec415",
+        "9c4a5fba-c15f-45ba-a505-43aebacde20b",
         "ebeea667-e922-4302-ab80-33396433900d",
         "ca12abb3-c03c-4763-b126-b6f84ad2d165",
         "18a316fa-9aca-4fb6-b932-4a9c0305136e",

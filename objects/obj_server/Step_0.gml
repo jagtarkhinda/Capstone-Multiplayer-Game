@@ -1,5 +1,4 @@
 if(global.max_players == global.players_picked){
-
 	//send data about other players
 	for(var i = 0; i < instance_number(obj_Player); i++){
 		var player = instance_find(obj_Player, i)
@@ -12,7 +11,7 @@ if(global.max_players == global.players_picked){
 			//SendRemoteEntity(so, CMD_PLAYER_HP, player.id, player.sprite_index)
 		}
 	}
-
+	#region game_is_started == 1 //start some objects to the game
 	if (!instance_exists(obj_boss) && game_is_started == 1){//game is starting
 		//get all walls
 		var num_walls = instance_number(obj_Wall)
@@ -22,17 +21,16 @@ if(global.max_players == global.players_picked){
 			ds_list_add(walls_list, w)
 		}
 		
-		randomize();
+		
 		//CREATE WEAPONS
+		randomize();
 		var auxW = 0
-		//var rand_x = 0
-		//var rand_y = 0
 		while(ds_list_size(weapons_list) < 4){
 			//rand_x = random_range(0,room_width);
 			//rand_y = random_range(0,room_height);
 			rand_x = irandom(room_width);
 			rand_y = irandom(room_height);
-			show_debug_message("Coords:" + string(rand_x) + " - "+ string(rand_y))
+			//show_debug_message("Coords:" + string(rand_x) + " - "+ string(rand_y))
 			if(place_free(rand_x, rand_y) 
 			&& place_free(rand_x+32, rand_y) 
 			&& place_free(rand_x-32, rand_y) 
@@ -41,8 +39,26 @@ if(global.max_players == global.players_picked){
 			&& place_free(rand_x+32, rand_y+32)
 			&& place_free(rand_x-32, rand_y-32)){
 				var wea = instance_create_layer(rand_x, rand_y, "Instances", obj_weapon)
-				show_debug_message("Coords - IN:" + string(rand_x) + " - "+ string(rand_y))
+				//show_debug_message("Coords - IN:" + string(rand_x) + " - "+ string(rand_y))
 				wea.weapon_obj_id = auxW
+				switch(auxW){
+					case 0:
+						wea.weapon_name = "Dual Bullet"
+						wea.weapon_price = 250
+					break
+					case 1:
+						wea.weapon_name = "HP regen"
+						wea.weapon_price = 300
+					break
+					case 2:
+						wea.weapon_name = "Missiles"
+						wea.weapon_price = 400
+					break
+					case 3:
+						wea.weapon_name = "Random five" 
+						wea.weapon_price = 500
+					break
+				}
 				auxW++
 				ds_list_add(weapons_list, wea)
 			}
@@ -64,7 +80,24 @@ if(global.max_players == global.players_picked){
 		}
 		game_is_started = 2
 		global.current_level = 1;
-	}else if(game_is_started == 2){
+	}
+	#endregion
+	#region game_is_started == 2 // game loop
+	else if(game_is_started == 2){
+	
+		//update weapons
+		for(var i = 0; i < instance_number(obj_weapon); i++){
+			var wea = instance_find(obj_weapon, i)
+			for(var s = 0; s < ds_list_size(sockets); s++){
+				var so = ds_list_find_value(sockets, s)
+				SendWeaponDrop(so, W_X, wea.id, wea.x)
+				SendWeaponDrop(so, W_Y, wea.id, wea.y)
+				SendWeaponDrop(so, W_NAME, wea.id, wea.weapon_name)
+				SendWeaponDrop(so, W_SPRITE, wea.id, wea.sprite_index)
+				SendWeaponDrop(so, W_ID, wea.id, wea.weapon_type_id)
+				SendWeaponDrop(so, W_PRICE, wea.id, wea.weapon_price)
+			}
+		}
 	
 		//send hp about other players
 		for(var i = 0; i < instance_number(obj_Player); i++)
@@ -258,6 +291,22 @@ if(global.max_players == global.players_picked){
 			}
 		}
 	}
+	#endregion game_is_started == 2 // game loop
+	#region game_is_started == 3 // Win Situation
+	else if(game_is_started == 3){
+		//do something
+	}
+	#endregion game_is_started == 3 // Win Situation
+	#region game_is_started == 3 // Loose Situation
+	else if(game_is_started == 4){
+		//do something
+	}
+	#endregion game_is_started == 3 // Loose Situation
+	#region game_is_started == 5 // Restart prep
+	else if(game_is_started == 5){
+		//do something
+	}
+	#endregion game_is_started == 5 // Restart prep
 }else{
 	for(var s = 0; s < ds_list_size(sockets); s++){
 		var so = ds_list_find_value(sockets, s)

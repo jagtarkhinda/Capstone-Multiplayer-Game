@@ -17,7 +17,8 @@ draw_healthbar(camX+sprite_width+65, camY +40, camX + 300, camY + sprite_height 
 playerMaxhp, $FF0000FF & $FFFFFF, $FF037F01 & $FFFFFF, $FF004C02 & $FFFFFF, 0, (($FF0000FF>>24) != 0),
 (($FF000000>>24) != 0));
 
-
-
+if(near_weapon){
+	draw_text(x, y+20, "Buy Weapon by pressing\n'Space' on keyboard \n or O on controller")
+}
 
 draw_set_halign(fa_left)

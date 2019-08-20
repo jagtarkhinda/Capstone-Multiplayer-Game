@@ -8,6 +8,12 @@
 #macro TANK_CHARACTER_BLUE		2
 #macro TANK_CHARACTER_YELLOW	3
 
+//weapons
+#macro WEAPON_DUAL_BULLET		0
+#macro WEAPON_HP_REGEN			1
+#macro WEAPON_MISSILE			2
+#macro WEAPON_RANDOM_FIVE		3
+
 //packets
 #macro PACKET_KEY				0
 #macro PACKET_ENTITY			1
@@ -27,6 +33,7 @@
 #macro PACKET_BOSS_ENTITY		15
 #macro PACKET_BOSS_BULLET		16
 #macro PACKET_WAIT_DONE			17
+#macro PACKET_WEAPON_BOX		18
 #macro PACKET_BOSS_BULLET_HIT    31
 
 var invalid_number = true

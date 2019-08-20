@@ -12,6 +12,7 @@ if socket == event_id{
 		
 		if !ds_map_exists(entities, e_id){
 			var p = instance_create_layer(0, 0, "Instances", obj_remote_entity)
+			p.my_Uid = e_id
 			ds_map_set(entities, e_id, p)
 		}
 		
@@ -280,8 +281,47 @@ if socket == event_id{
 		}	
 		
 		break
-
+		case PACKET_WEAPON_BOX :
+			var c = buffer_read(buff, buffer_u8)
+			var wea_id = buffer_read(buff, buffer_u32)
+	
+			if !ds_map_exists(weapons_box, wea_id){
+				var wea_i = instance_create_layer(0, 0, "Instances", obj_remote_weapon)
+				wea_i.wea_Uid = wea_id
+				ds_map_set(weapons_box, wea_id, wea_i)
+			
+				show_debug_message("receive with id" + string (wea_id));
+			}
 		
-}
-		
+			var weapon_i = weapons_box[? wea_id]
+			switch(c){
+				case W_X:
+					weapon_i.x = buffer_read(buff, buffer_s16)
+				break
+				case W_Y:
+					weapon_i.y = buffer_read(buff, buffer_s16)
+				break
+				case W_NAME:
+					weapon_i.weapon_name = buffer_read(buff, buffer_string)
+				break
+				case W_SPRITE:
+					weapon_i.sprite_index = buffer_read(buff, buffer_u16)
+				break
+				case W_ID:
+					weapon_i.weapon_type_id = buffer_read(buff, buffer_u8)
+				break
+				case W_DESTROY:
+					buffer_read(buff, buffer_u8)
+					ds_map_delete(weapons_box, wea_id)
+					with(weapon_i){
+						instance_destroy()
+					}
+				break
+			
+				case W_PRICE :
+					weapon_i.weapon_price = buffer_read(buff, buffer_s16)
+				break
+			}
+		break	
+	}	
 }

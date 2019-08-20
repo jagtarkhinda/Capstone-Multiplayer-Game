@@ -156,6 +156,31 @@ if(!global.playerisdead)
 			}
 		}
 	
+		//Buy weapons
+		show_debug_message("my_id: " + string(my_id))
+		var weapon_closer = noone //near weapon
+		var distance = 50 // max distance
+		for (var v = ds_map_find_first(entities); !is_undefined(v); v = ds_map_find_next(entities, v)) {
+			var cur_client = entities[? v];
+			for (var k = ds_map_find_first(weapons_box); !is_undefined(k); k = ds_map_find_next(weapons_box, k)) {
+				var wea = weapons_box[? k];
+				if(cur_client.my_id == my_id){
+					with(wea)
+					{
+						if (distance_to_object(cur_client) < distance) //checks the current min distance
+						{
+							weapon_closer = wea.wea_Uid
+						}
+					}
+				}
+			}
+			if(weapon_closer != noone){
+				cur_client.near_weapon = true;
+			}else{
+				cur_client.near_weapon = false;
+			}
+			weapon_closer = noone
+		}
 	
 	}else{
 		if(keyboard_check_pressed(vk_left) || gamepad_button_check_pressed(0,gp_padl)){
