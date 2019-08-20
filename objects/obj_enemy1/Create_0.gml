@@ -18,6 +18,7 @@ if(instance_exists(obj_server)){
 	visible = false //remove the sprite duplication on the player host
 }
 
-monsterMaxHp = 20
+monsterMaxHp = 100
 monsterHp = monsterMaxHp
 hasPath = false
+enemy_moving = false

@@ -12,8 +12,11 @@ if(!global.playerisdead)
 		key_left_released = keyboard_check_released(ord("A")) || keyboard_check_released(vk_left);
 		key_down_released = keyboard_check_released(ord("S")) || keyboard_check_released(vk_down);
 		key_up_released = keyboard_check_released(ord("W")) || keyboard_check_released(vk_up);
+		
+		key_buy_pressed = keyboard_check_pressed(vk_space);
+		//key_buy_released = keyboard_check_released(vk_space) || keyboard_check_released(vk_up);
 
-		if(key_right_pressed || key_left_pressed || key_up_pressed || key_down_pressed || mouse_check_button(mb_left)) {
+		if(key_right_pressed || key_left_pressed || key_up_pressed || key_down_pressed || mouse_check_button(mb_left) || mouse_check_button(mb_right) || key_buy_pressed) {
 			show_debug_message("Controller 0")
 			controller = 0;
 		}
@@ -45,6 +48,15 @@ if(!global.playerisdead)
 			}
 			if(key_up_released){
 				SendMovement(KEY_UP, false)
+			}
+			if(key_buy_pressed){
+				for (var k = ds_map_find_first(entities); !is_undefined(k); k = ds_map_find_next(entities, k)) {
+					var cur_client = entities[? k];
+					if(cur_client.my_id == my_id && cur_client.near_box_id != -1){
+						var weap = weapons_box[? cur_client.near_box_id];
+						RequestBuyWeapon(cur_client.my_id, weap.wea_Uid)
+					}
+				}
 			}
 		}
 		#endregion
@@ -114,8 +126,12 @@ if(!global.playerisdead)
 			cooldown = 10;
 			SendNewBullet(PACKET_NEW_BULLET, mouse_x, mouse_y)
 		}
+		if (mouse_check_button(mb_right)) && (cooldown < 1) {
+			cooldown = 10;
+			SendSpecialAbility(PACKET_SPECIAL_ABILITY, mouse_x, mouse_y)
+		}
 		cooldown = cooldown - 1;
-	
+		
 	
 		/*---------------- enemies -------------------------*/
 		/*
@@ -146,9 +162,14 @@ if(!global.playerisdead)
 				var rem_coin = instance_find(obj_remote_coin, c)
 
 				var v = coin_map[? k];
-				if(v.id == rem_coin.id){
-					found_coin = true
+				if(!instance_exists(v)){//dont know if is working
+					ds_map_delete(coin_map,k)
+				}else{
+					if(v.id == rem_coin.id){
+						found_coin = true
+					}
 				}
+				
 			}
 		
 			if(!found_coin){
@@ -157,7 +178,7 @@ if(!global.playerisdead)
 		}
 	
 		//Buy weapons
-		show_debug_message("my_id: " + string(my_id))
+		//show_debug_message("my_id: " + string(my_id))
 		var weapon_closer = noone //near weapon
 		var distance = 50 // max distance
 		for (var v = ds_map_find_first(entities); !is_undefined(v); v = ds_map_find_next(entities, v)) {
@@ -170,6 +191,7 @@ if(!global.playerisdead)
 						if (distance_to_object(cur_client) < distance) //checks the current min distance
 						{
 							weapon_closer = wea.wea_Uid
+							cur_client.near_box_id = wea.wea_Uid //fill client variable so store the near box
 						}
 					}
 				}
@@ -178,6 +200,7 @@ if(!global.playerisdead)
 				cur_client.near_weapon = true;
 			}else{
 				cur_client.near_weapon = false;
+				cur_client.near_box_id = -1
 			}
 			weapon_closer = noone
 		}

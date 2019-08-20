@@ -1,7 +1,13 @@
 socket = network_create_socket(network_socket_tcp)
 global.socket = socket
 buffer = buffer_create(16384, buffer_grow, 1)
-connect = network_connect(socket, "127.0.0.1", PORT)
+
+global.ipHost = "127.0.0.1"
+if(!instance_exists(obj_server)){
+	global.ipHost = get_string("Enter the host ip", global.ipHost)
+}
+
+connect = network_connect(socket, global.ipHost, PORT)
 
 if(connect < 0 ){
 	show_message("Can not reach the server")

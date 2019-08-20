@@ -25,5 +25,9 @@ HandleSprites(char)
 playerMaxhp = 100
 playerhp =  playerMaxhp
 
+//weapon
+weapon_type = -1
+weapon_name = ""
+
 //controller = 0
 

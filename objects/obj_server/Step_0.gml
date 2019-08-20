@@ -8,7 +8,7 @@ if(global.max_players == global.players_picked){
 			SendRemoteEntity(so, CMD_X, player.id, player.x)
 			SendRemoteEntity(so, CMD_Y, player.id, player.y)
 			SendRemoteEntity(so, CMD_SPRITE, player.id, player.sprite_index)
-			//SendRemoteEntity(so, CMD_PLAYER_HP, player.id, player.sprite_index)
+			SendRemoteEntity(so, CMD_HP, player.id, player.playerhp)
 		}
 	}
 	#region game_is_started == 1 //start some objects to the game
@@ -26,21 +26,14 @@ if(global.max_players == global.players_picked){
 		randomize();
 		var auxW = 0
 		while(ds_list_size(weapons_list) < 4){
-			//rand_x = random_range(0,room_width);
-			//rand_y = random_range(0,room_height);
 			rand_x = irandom(room_width);
 			rand_y = irandom(room_height);
-			//show_debug_message("Coords:" + string(rand_x) + " - "+ string(rand_y))
-			if(place_free(rand_x, rand_y) 
-			&& place_free(rand_x+32, rand_y) 
-			&& place_free(rand_x-32, rand_y) 
-			&& place_free(rand_x, rand_y+32) 
-			&& place_free(rand_x, rand_y-32) 
-			&& place_free(rand_x+32, rand_y+32)
-			&& place_free(rand_x-32, rand_y-32)){
+			if(place_free(rand_x, rand_y) && place_free(rand_x+32, rand_y) && place_free(rand_x-32, rand_y) && place_free(rand_x, rand_y+32) && place_free(rand_x, rand_y-32) && place_free(rand_x+32, rand_y+32) && place_free(rand_x-32, rand_y-32)){
 				var wea = instance_create_layer(rand_x, rand_y, "Instances", obj_weapon)
 				//show_debug_message("Coords - IN:" + string(rand_x) + " - "+ string(rand_y))
-				wea.weapon_obj_id = auxW
+				wea.weapon_type_id = auxW
+				show_debug_message("auxW:" + string(auxW))
+				//show_debug_message("auxW:" + string(wea.weapon_obj_id))
 				switch(auxW){
 					case 0:
 						wea.weapon_name = "Dual Bullet"
@@ -64,10 +57,6 @@ if(global.max_players == global.players_picked){
 			}
 		}
 		
-		show_debug_message("weapons_list:" + string(ds_list_size(weapons_list)))
-		
-			
-	
 		//create boss
 		boss = instance_create_layer(room_width/2, room_height/2, "Enemy_Layer", obj_boss)
 		for(var s = 0; s < ds_list_size(sockets); s++){
@@ -84,6 +73,14 @@ if(global.max_players == global.players_picked){
 	#endregion
 	#region game_is_started == 2 // game loop
 	else if(game_is_started == 2){
+			game_timer -= delta_time/1000000; //every secound
+			//boos shooting
+			if(game_timer <= 0)
+			{
+				game_timer = 30;
+				
+			}
+	
 	
 		//update weapons
 		for(var i = 0; i < instance_number(obj_weapon); i++){
@@ -232,7 +229,21 @@ if(global.max_players == global.players_picked){
 					}
 				}else{
 					if(!enemy_i.hasPath){
-						var pos = irandom_range(1,20)
+						
+						if(!enemy_i.enemy_moving){
+							var random_x = irandom_range(0,enemy_i.x+100);
+							var random_y = irandom_range(0,enemy_i.y+100);
+							with(enemy_i){
+								move_towards_point(random_x,random_y,2);
+							
+							}
+							enemy_i.enemy_moving = true
+						}
+						
+						
+						
+						
+						/*var pos = irandom_range(1,20)
 						var current_path = asset_get_index("path" + string(pos));
 						//starting the path
 						with(enemy_i){
@@ -241,6 +252,7 @@ if(global.max_players == global.players_picked){
 						
 							path_start(current_path, 1, path_action_reverse,true);
 						}
+						*/
 					}
 				
 				}

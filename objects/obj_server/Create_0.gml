@@ -34,6 +34,8 @@
 #macro PACKET_BOSS_BULLET		16
 #macro PACKET_WAIT_DONE			17
 #macro PACKET_WEAPON_BOX		18
+#macro PACKET_REQUEST_WEAPON	19
+#macro PACKET_SPECIAL_ABILITY	20
 #macro PACKET_BOSS_BULLET_HIT    31
 
 var invalid_number = true
@@ -58,6 +60,7 @@ sockets = ds_list_create()
 game_is_started = 0
 
 boss_bullet_timer = 0.2
+game_timer = 30
 //list of walls
 walls_list = ds_list_create()
 

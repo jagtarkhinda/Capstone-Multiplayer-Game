@@ -3,4 +3,4 @@ image_index = 0;
 
 image_speed = 0;
 
-wall_hp = 5
+wall_hp = 60

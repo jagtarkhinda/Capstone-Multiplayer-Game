@@ -31,6 +31,14 @@
     },
     "resources": [
         {
+            "Key": "010a5b06-99e7-43ee-9f35-df67f5dedb69",
+            "Value": {
+                "id": "514073b8-ef78-47a5-85b3-5b7909707208",
+                "resourcePath": "scripts\\RequestBuyWeapon\\RequestBuyWeapon.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "07ad9d9a-3ce1-4bb4-a362-ac0b4fb363e7",
             "Value": {
                 "id": "78fc7ddf-ed9b-4d34-9d29-bf2f13c6b9b8",
@@ -135,6 +143,14 @@
             }
         },
         {
+            "Key": "25320558-cc1e-4bb8-a1d7-958c38e817f5",
+            "Value": {
+                "id": "d1db6996-262c-49dc-891a-98286088c7d8",
+                "resourcePath": "scripts\\SendSpecialAbility\\SendSpecialAbility.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "26397040-efc0-47d3-be85-deb07c884954",
             "Value": {
                 "id": "0189dc47-787b-4bea-9d22-db2bf635e520",
@@ -172,6 +188,14 @@
                 "id": "4124e2dd-9be8-49c1-b3cd-185760dc5f81",
                 "resourcePath": "sprites\\spr_enemy1_attachleft\\spr_enemy1_attachleft.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "3217061a-b3bd-4edf-911d-17df98e76e2e",
+            "Value": {
+                "id": "a0d2336a-a6e3-4c26-8097-99a70030909d",
+                "resourcePath": "objects\\obj_end_map_map\\obj_end_map_map.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -1006,6 +1030,8 @@
         "86c1580d-cc02-466d-84f5-1a315d23b8a4",
         "1fbc9508-080d-4286-b785-49b30a85011b",
         "5d5734d6-f8c3-438f-94f7-973cf8115072",
+        "010a5b06-99e7-43ee-9f35-df67f5dedb69",
+        "25320558-cc1e-4bb8-a1d7-958c38e817f5",
         "ee717e7a-6e76-4e57-9736-c3ed5650f6ac"
     ],
     "tutorial": ""

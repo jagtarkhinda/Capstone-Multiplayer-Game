@@ -1,1 +1,1 @@
-wall_hp = 5
+wall_hp = 60

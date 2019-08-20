@@ -33,8 +33,8 @@ if socket == event_id{
 			break
 			case CMD_HP:
 				p.playerhp = buffer_read(buff, buffer_s16)
-				show_debug_message("Player hp" + string(p.playerhp))
-				show_debug_message("Player idd " + string(p.id))
+				//show_debug_message("Player hp" + string(p.playerhp))
+				//show_debug_message("Player idd " + string(p.id))
 				/*if(p.playerhp <=  0)
 				{
 					global.playerisdead = true
@@ -141,13 +141,13 @@ if socket == event_id{
 			break
 			case ENE1_DESTROY:
 				buffer_read(buff, buffer_u16)
-				show_debug_message("CLIENT 1 - Shooted monster id: " + string(ene_id))
-				show_debug_message("CLIENT 1 - Shooted monster Hp: " + string(enemy.monsterHp))
+				//show_debug_message("CLIENT 1 - Shooted monster id: " + string(ene_id))
+				//show_debug_message("CLIENT 1 - Shooted monster Hp: " + string(enemy.monsterHp))
 				//with(instance_find(obj_remote_enemy, ene_id)){
 				
-				show_debug_message("CLIENT 1 - enemies1 size: " + string(ds_map_size(enemies1)))
+				//show_debug_message("CLIENT 1 - enemies1 size: " + string(ds_map_size(enemies1)))
 				var num_en = instance_number(obj_remote_enemy)
-				show_debug_message("CLIENT 1 - num_en: " + string(num_en));
+				//show_debug_message("CLIENT 1 - num_en: " + string(num_en));
 				ds_map_delete(enemies1, ene_id)
 				
 				enemy.visible = false
@@ -158,9 +158,9 @@ if socket == event_id{
 					show_debug_message("CLIENT 2 - Shooted monster Hp: " + string(monsterHp))
 					instance_destroy()
 				}*/
-				show_debug_message("CLIENT 2 - enemies1 size: " + string(ds_map_size(enemies1)))
+				//show_debug_message("CLIENT 2 - enemies1 size: " + string(ds_map_size(enemies1)))
 				num_en = instance_number(obj_remote_enemy)
-				show_debug_message("CLIENT 2 - num_en: " + string(num_en));
+				//show_debug_message("CLIENT 2 - num_en: " + string(num_en));
 			
 			break
 			case ENE1_HP:
@@ -170,7 +170,7 @@ if socket == event_id{
 	break
 	
 	case PACKET_COIN:
-		show_debug_message("CLIENT coin ");
+		//show_debug_message("CLIENT coin ");
 		var c = buffer_read(buff, buffer_u8)
 		var coin_id = buffer_read(buff, buffer_u32)
 		
@@ -311,6 +311,7 @@ if socket == event_id{
 					weapon_i.weapon_type_id = buffer_read(buff, buffer_u8)
 				break
 				case W_DESTROY:
+					show_debug_message("destry weapon: " + string(wea_id))
 					buffer_read(buff, buffer_u8)
 					ds_map_delete(weapons_box, wea_id)
 					with(weapon_i){
