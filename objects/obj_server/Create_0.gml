@@ -37,7 +37,7 @@
 #macro PACKET_REQUEST_WEAPON	19
 #macro PACKET_SPECIAL_ABILITY	20
 #macro PACKET_BOSS_BULLET_HIT    31
-
+#macro PACKET_ALLLOST			32
 var invalid_number = true
 while(invalid_number){
 	global.max_players = get_string("Enter a valid number of max players", "")
@@ -47,6 +47,10 @@ while(invalid_number){
 	}
 }
 global.players_picked = 0
+
+#region var_all_player_dead:
+	global.count_player_dead = 0
+#endregion
 
 
 
@@ -77,6 +81,7 @@ boss = noone
 global.money = 0
 global.boss_rage = false
 global.current_level = 0;
+global.youlose = false;
 enemies_done = 0
 
 

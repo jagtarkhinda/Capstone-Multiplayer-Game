@@ -96,6 +96,27 @@ if(global.max_players == global.players_picked){
 			}
 		}
 	
+		#region count_player_dead
+		/*if player is dead count*/
+		for(var i = 0; i < instance_number(obj_Player); i++)
+		{
+			var player = instance_find(obj_Player, i)
+		
+			if(player.playerhp <=0)
+			{
+				global.count_player_dead +=1
+			}
+			
+		}
+		if(global.count_player_dead == instance_number(obj_Player))
+		{
+			show_debug_message("All Players Dead Game Over");
+			global.youlose = true
+		
+		}
+		global.count_player_dead = 0;
+			#endregion
+	
 		//send hp about other players
 		for(var i = 0; i < instance_number(obj_Player); i++)
 		{
@@ -323,5 +344,20 @@ if(global.max_players == global.players_picked){
 	for(var s = 0; s < ds_list_size(sockets); s++){
 		var so = ds_list_find_value(sockets, s)
 		SendWaitIsDone(so, global.wait_for_host)
+	}
+}
+if(global.youlose)
+{
+	for(var i = 0; i < instance_number(obj_Player); i++){
+		var player = instance_find(obj_Player, i)
+		
+		instance_create_layer(0,0,"End_Menu",obj_lose);
+		
+		for(var s = 0; s < ds_list_size(sockets); s++){
+			var so = ds_list_find_value(sockets, s)
+			SendLoseScreen(so,ALL_LOST,player.id,true)
+			//SendRemoteEntity(so, CMD_PLAYER_HP, player.id, player.sprite_index)
+		}
+		
 	}
 }

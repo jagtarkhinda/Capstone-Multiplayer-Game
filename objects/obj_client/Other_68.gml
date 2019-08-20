@@ -324,5 +324,25 @@ if socket == event_id{
 				break
 			}
 		break	
+		
+				#region get_lose_signal
+		
+		case PACKET_ALLLOST :
+			var c = buffer_read(buff, buffer_u8)
+			var wea_id = buffer_read(buff, buffer_u32)
+	
+			
+			switch(c){
+				case ALL_LOST:
+					var get = buffer_read(buff, buffer_bool)
+					if(get)
+					{
+						 instance_create_layer(0, 0, "End_Menu",obj_remote_lose)
+							show_debug_message("====================================================== all killed" );
+					}
+				break
+			}
+		#endregion
+		
 	}	
 }

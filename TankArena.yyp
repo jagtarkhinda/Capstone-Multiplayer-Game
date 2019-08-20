@@ -39,6 +39,14 @@
             }
         },
         {
+            "Key": "077ac716-ec90-4840-953d-1a2b999406a4",
+            "Value": {
+                "id": "f5d637a6-c2bc-4f2e-a9a0-c2dea0029d0a",
+                "resourcePath": "scripts\\SendLoseScreen\\SendLoseScreen.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "07ad9d9a-3ce1-4bb4-a362-ac0b4fb363e7",
             "Value": {
                 "id": "78fc7ddf-ed9b-4d34-9d29-bf2f13c6b9b8",
@@ -340,6 +348,14 @@
                 "id": "d85ea015-acf4-4e12-80f9-92d1f1de663d",
                 "resourcePath": "paths\\path10\\path10.yy",
                 "resourceType": "GMPath"
+            }
+        },
+        {
+            "Key": "49fa55c4-ee28-4e0e-a93e-ae91c8664ac9",
+            "Value": {
+                "id": "9a7869c3-f178-43be-b1b7-99e1cf24dc93",
+                "resourcePath": "objects\\obj_remote_lose\\obj_remote_lose.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -775,6 +791,14 @@
             }
         },
         {
+            "Key": "cb78d3b0-571c-4bf6-9e5d-6818230c92a3",
+            "Value": {
+                "id": "c1e686bc-fb8f-441b-877e-894db398ab97",
+                "resourcePath": "objects\\obj_lose\\obj_lose.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "cc98d028-7bdd-4680-85f3-c87a7baa481e",
             "Value": {
                 "id": "12ecdf36-aa16-4e82-a55a-8d304ae8ee62",
@@ -1022,6 +1046,7 @@
         "6349586d-72d5-45e4-bcf8-8cfaca6659f5",
         "9b7d645a-1c48-478f-a692-e3f40bdec415",
         "9c4a5fba-c15f-45ba-a505-43aebacde20b",
+        "077ac716-ec90-4840-953d-1a2b999406a4",
         "ebeea667-e922-4302-ab80-33396433900d",
         "ca12abb3-c03c-4763-b126-b6f84ad2d165",
         "18a316fa-9aca-4fb6-b932-4a9c0305136e",
