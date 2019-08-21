@@ -144,6 +144,21 @@ if(global.max_players == global.players_picked  || game_is_started > 0){
 					boss_bullet = instance_create_layer(boss.x,boss.y,"Enemy_Layer", obj_boss_bullet);
 					boss_bullet_timer = 0.2;
 					ds_list_add(boss_bullets_server,boss_bullet)
+					#region respawn_more_enemies
+				if(ds_list_size(enemies1) < 23 )
+				{
+					spawn_more = true;
+				}
+				if(spawn_more){
+					for(var more_e = (ds_list_size(enemies1) - 1); more_e < 23 ; more_e++)
+					{
+						var more_ene = instance_create_layer(random_range(boss.x - 200, boss.x + 200),random_range(boss.y - 200, boss.y + 200),"Enemy_Layer",obj_enemy1);
+						enemy_id += 1;
+						ds_list_add(enemies1,more_ene)
+						spawn_more = false
+					}
+				}
+				#endregion
 				}
 		
 				//update bullets everywhere

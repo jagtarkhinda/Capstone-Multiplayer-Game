@@ -93,3 +93,4 @@ ds_list_add(available_tanks, TANK_CHARACTER_GREEN)
 ds_list_add(available_tanks, TANK_CHARACTER_BLUE)
 ds_list_add(available_tanks, TANK_CHARACTER_YELLOW)
 
+spawn_more = false;
