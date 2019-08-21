@@ -33,6 +33,7 @@ global.playerisdead = false
 //SendTankCharacter(char)
 playing = false
 global.cli_money = 0
+global.cli_game_score = 0
 picked[0] = false
 picked[1] = false
 picked[2] = false

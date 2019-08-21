@@ -1,6 +1,5 @@
-
 with(other){
-	wall_hp-=2
+	wall_hp--
 	if(wall_hp <= 0){
 		instance_destroy();
 	}

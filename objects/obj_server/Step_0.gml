@@ -134,66 +134,86 @@ if(global.max_players == global.players_picked){
 			}
 		}
 
-		if(global.boss_rage && global.current_level == 1)
-		{
-			boss_bullet_timer -= delta_time/1000000;
-			//boos shooting
-			if(boss_bullet_timer <= 0)
+		if(instance_exists(boss)) {
+			if(global.boss_rage && global.current_level == 1 && boss.bossHp > 0)
 			{
-				boss_bullet = instance_create_layer(boss.x,boss.y,"Enemy_Layer", obj_boss_bullet);
-				boss_bullet_timer = 0.2;
-				ds_list_add(boss_bullets_server,boss_bullet)
-			}
+				boss_bullet_timer -= delta_time/1000000;
+				//boos shooting
+				if(boss_bullet_timer <= 0)
+				{
+					boss_bullet = instance_create_layer(boss.x,boss.y,"Enemy_Layer", obj_boss_bullet);
+					boss_bullet_timer = 0.2;
+					ds_list_add(boss_bullets_server,boss_bullet)
+				}
 		
-		
-			
 				//update bullets everywhere
 				for(var oo = 0; oo < ds_list_size(boss_bullets_server); oo++)
+				{
+					var bu = ds_list_find_value(boss_bullets_server, oo)
+				//	var ww = instance_find(obj_boss_bullet, bu)
+					if(bu.bb_hp <= 0)
+					{
+						ds_list_delete(boss_bullets_server, oo)
+						for(var w = 0; w < ds_list_size(sockets); w++)
+						{
+							var soc = ds_list_find_value(sockets, w)
+							//send to destroy client side enemy
+							SendBossBullet(soc, BB_DESTROY, bu.id,0)
+						}
+					
+						with(bu){
+							instance_destroy()
+						}
+					}
+					else if(instance_exists(bu))
+					{
+						for(var s = 0; s < ds_list_size(sockets); s++)
+						{
+							var so = ds_list_find_value(sockets, s)
+							SendBossBullet(so, BB_X, bu.id, bu.x)
+							SendBossBullet(so, BB_Y, bu.id, bu.y)
+							SendBossBullet(so, BB_NAME, bu.id, "Bullet")
+							SendBossBullet(so, BB_SPRITE, bu.id, bu.sprite_index)
+						}
+					}	
+				}
+			}
+		}
+	#region boss Update
+		for(var w = 0; w < ds_list_size(sockets); w++){
+			var soc = ds_list_find_value(sockets, w)
+			//update boss
+			if(instance_exists(boss)){
+				if(boss.bossHp <= 0){
+					SendBossEntity(soc, BOSS_DESTROY, boss.id, 0)
+					global.game_score += 150
+					UpdateScore(soc, global.game_score)
+					show_debug_message("Game Score: " + string(global.game_score))
+					for(var oo = 0; oo < ds_list_size(boss_bullets_server); oo++)
 					{
 						var bu = ds_list_find_value(boss_bullets_server, oo)
-					//	var ww = instance_find(obj_boss_bullet, bu)
-						if(bu.bb_hp <= 0)
-						{
-							ds_list_delete(boss_bullets_server, oo)
-							for(var w = 0; w < ds_list_size(sockets); w++)
-							{
-									var soc = ds_list_find_value(sockets, w)
-									//send to destroy client side enemy
-									SendBossBullet(soc, BB_DESTROY, bu.id,0)
-							}
-						
-							with(bu){
-								instance_destroy()
-							}
-						}
-							else if(instance_exists(bu))
-							{
-								for(var s = 0; s < ds_list_size(sockets); s++)
-								{
-									var so = ds_list_find_value(sockets, s)
-									SendBossBullet(so, BB_X, bu.id, bu.x)
-									SendBossBullet(so, BB_Y, bu.id, bu.y)
-									SendBossBullet(so, BB_NAME, bu.id, "Bullet")
-									SendBossBullet(so, BB_SPRITE, bu.id, bu.sprite_index)
-								}
-							}
-					
+						SendBossBullet(soc, BB_DESTROY, bu.id,0)
+					}
 				}
-			
-		
-			show_debug_message("boss rage");
-		
+				else {
+					SendBossEntity(soc, BOSS_X, boss.id, boss.x)
+					SendBossEntity(soc, BOSS_Y, boss.id, boss.y)
+					SendBossEntity(soc, BOSS_NAME, boss.id, "Boss")
+					SendBossEntity(soc, BOSS_SPRITE, boss.id, boss.sprite_index)
+					SendBossEntity(soc, BOSS_HP, boss.id, boss.bossHp)
+				}
+			}
 		}
-	
+	#endregion
 	
 		for(var s = 0; s < ds_list_size(sockets); s++){ //doesnt work properly, had to create new for loops for sockets/// see later
 			var so = ds_list_find_value(sockets, s)
 			//update boss
-			SendBossEntity(so, BOSS_X, boss.id, boss.x)
+			/*SendBossEntity(so, BOSS_X, boss.id, boss.x)
 			SendBossEntity(so, BOSS_Y, boss.id, boss.y)
 			SendBossEntity(so, BOSS_NAME, boss.id, "Boss")
 			SendBossEntity(so, BOSS_SPRITE, boss.id, boss.sprite_index)
-		
+		*/
 			//send data about other players
 			for(var i = 0; i < instance_number(obj_Player); i++){
 				var playera = instance_find(obj_Player, i)
@@ -277,11 +297,13 @@ if(global.max_players == global.players_picked){
 				}
 			}
 		
+			#region coin
 			//Update the total money collected
 			for(var w = 0; w < ds_list_size(sockets); w++){
 				var soc = ds_list_find_value(sockets, w)
 				UpdateMoney(soc, global.money)
 			}
+			#endregion
 		
 			//update enemies
 			for(var en = 0; en < ds_list_size(enemies1); en++){
@@ -295,7 +317,9 @@ if(global.max_players == global.players_picked){
 						//send to destroy client side enemy
 						SendEnemyPositions(soc, ENE1_HP, enemy.id, enemy.monsterHp)
 						SendEnemyPositions(soc, ENE1_DESTROY, enemy.id, 0)
-					
+						global.game_score += 5
+						UpdateScore(soc, global.game_score)
+						show_debug_message("Game Score: " + string(global.game_score))
 						//send to create a coin in client side
 						SendNewCoin(soc, COIN_X, nCoin.id, nCoin.x)
 						SendNewCoin(soc, COIN_Y, nCoin.id, nCoin.y)

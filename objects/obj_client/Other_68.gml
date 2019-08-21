@@ -209,6 +209,13 @@ if socket == event_id{
 		//show_debug_message("Total Coins : " + string(totcoin))
 		global.cli_money = totcoin
 	break
+	
+	case PACKET_UPDATE_SCORE:
+		teamScore = buffer_read(buff, buffer_s16)
+		//show_debug_message("Total Coins : " + string(totcoin))
+		global.cli_game_score = teamScore
+	break
+	
 	case PACKET_BOSS_ENTITY:
 			var c = buffer_read(buff, buffer_u8)
 		var e_id = buffer_read(buff, buffer_u32)
@@ -281,6 +288,7 @@ if socket == event_id{
 		}	
 		
 		break
+		
 		case PACKET_WEAPON_BOX :
 			var c = buffer_read(buff, buffer_u8)
 			var wea_id = buffer_read(buff, buffer_u32)

@@ -22,3 +22,4 @@ monsterMaxHp = 100
 monsterHp = monsterMaxHp
 hasPath = false
 enemy_moving = false
+ser_ene_col_time = 2
