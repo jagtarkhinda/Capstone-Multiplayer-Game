@@ -63,7 +63,9 @@ if(!global.playerisdead)
 		#region gamepad control
 		// GAME PAD CONTROLS
 		//gamepad control left 
-		if(abs(gamepad_axis_value(0, gp_axislh)) >= 0.5 || abs(gamepad_axis_value(0, gp_axisrh)) >= 0.5 || abs(gamepad_axis_value(0, gp_axislv)) >= 0.5 || abs(gamepad_axis_value(0, gp_axisrv)) >= 0.5 || abs(gamepad_button_check(0,gp_shoulderrb)) || gamepad_button_check_pressed(0,gp_face2)) {
+		if(abs(gamepad_axis_value(0, gp_axislh)) >= 0.5 || abs(gamepad_axis_value(0, gp_axisrh)) >= 0.5 || abs(gamepad_axis_value(0, gp_axislv)) >= 0.5 
+		|| abs(gamepad_axis_value(0, gp_axisrv)) >= 0.5 || abs(gamepad_button_check(0,gp_shoulderrb)) || gamepad_button_check_pressed(0,gp_face2) 
+		|| gamepad_button_check(0,gp_shoulderl)) {
 			controller = 1
 		}
 		if(controller == 1){
@@ -94,7 +96,7 @@ if(!global.playerisdead)
 			else {
 				SendMovement(KEY_DOWN, false)
 			}
-			
+
 			if(gamepad_button_check_pressed(0,gp_face2)){
 				for (var k = ds_map_find_first(entities); !is_undefined(k); k = ds_map_find_next(entities, k)) {
 					var cur_client = entities[? k];
