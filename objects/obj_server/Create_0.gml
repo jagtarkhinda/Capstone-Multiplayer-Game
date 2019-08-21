@@ -36,11 +36,12 @@
 #macro PACKET_WEAPON_BOX		18
 #macro PACKET_REQUEST_WEAPON	19
 #macro PACKET_SPECIAL_ABILITY	20
+#macro PACKET_UPDATE_SCORE	21
 #macro PACKET_BOSS_BULLET_HIT    31
 #macro PACKET_ALLLOST			32
 var invalid_number = true
 while(invalid_number){
-	global.max_players = get_string("Enter a valid number of max players", "")
+	global.max_players = get_string("Enter a valid number of players to this game (Max 4)", "")
 	
 	if(global.max_players == "1" || global.max_players == "2" || global.max_players == "3" || global.max_players == "4"){
 		invalid_number = false
@@ -53,8 +54,8 @@ global.players_picked = 0
 #endregion
 
 
-
-server = network_create_server(network_socket_tcp, PORT, MAX_CLIENTS)
+reserved_positions = ds_map_create()
+server = network_create_server(network_socket_tcp, PORT, global.max_players)
 
 buffer = buffer_create(16384, buffer_grow, 1)
 
@@ -79,6 +80,7 @@ boss_bullets_server = ds_list_create()
 enemy_id = 0;
 boss = noone
 global.money = 0
+global.game_score = 0
 global.boss_rage = false
 global.current_level = 0;
 global.youlose = false;

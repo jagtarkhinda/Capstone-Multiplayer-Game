@@ -10,7 +10,7 @@ if(!instance_exists(obj_server)){
 connect = network_connect(socket, global.ipHost, PORT)
 
 if(connect < 0 ){
-	show_message("Can not reach the server")
+	show_message("Can not reach the server, or server is full!")
 	game_restart()
 }
 
@@ -33,6 +33,7 @@ global.playerisdead = false
 //SendTankCharacter(char)
 playing = false
 global.cli_money = 0
+global.cli_game_score = 0
 picked[0] = false
 picked[1] = false
 picked[2] = false
@@ -40,6 +41,7 @@ picked[3] = false
 
 my_id = -1
 target = noone
+targetCount = 0
 image_speed = .1
 
 SendMyId()

@@ -11,7 +11,37 @@ if server == event_id{
 		ds_list_add(sockets, sock)
 		
 		//create a player
-		var playerH = instance_create_layer(64, 64+32, "Instances", obj_Player)
+		var tempX = 0
+		var tempY = 0
+		
+		initial_player_coords = ds_map_create();
+
+		if !ds_map_exists(reserved_positions, "1")
+		{
+			ds_map_add(reserved_positions, "1", sock);
+			tempX = 110;
+			tempY = 110;
+		}
+		else if !ds_map_exists(reserved_positions, "2")
+		{
+			ds_map_add(reserved_positions, "2", sock);
+			tempX = 110;
+			tempY = 2982;
+		}
+		else if !ds_map_exists(reserved_positions, "3")
+		{
+			ds_map_add(reserved_positions, "3", sock);
+			tempX = 3955;
+			tempY = 100;
+		}
+		else if !ds_map_exists(reserved_positions, "4")
+		{
+			ds_map_add(reserved_positions, "4", sock);
+			tempX = 3981;
+			tempY = 2974;
+		}
+		
+		var playerH = instance_create_layer(tempX, tempY, "Instances", obj_Player)
 		//var playerH = instance_create_layer(64, 64+32*sock, "Instances", obj_Player)
 		playerH.my_id = sock
 		ds_map_add(clients, sock, playerH)
@@ -46,6 +76,13 @@ if server == event_id{
 		p = clients[? sock]
 		
 		//destroy the client that left
+		for (var k = ds_map_find_first(reserved_positions); !is_undefined(k); k = ds_map_find_next(reserved_positions, k)) {
+			var v = reserved_positions[? k];
+			if(v == sock){
+			ds_map_delete(reserved_positions, k)
+			}
+		}
+		
 		for(var s = 0; s < ds_list_size(sockets); s++){
 			var so = ds_list_find_value(sockets, s)
 			SendRemoteEntity(so, CMD_DESTROY, p.id, 0)

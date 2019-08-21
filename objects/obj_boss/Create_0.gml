@@ -3,6 +3,10 @@
 left = true;
 right = false;
 
+bossMaxHp = 10
+bossHp = bossMaxHp
+ser_boss_col_time = 2
+
 boss_moving = false
 
 if(instance_exists(obj_server)){
