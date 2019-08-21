@@ -224,6 +224,9 @@ if server == event_id{
 			for(var w = 0; w < ds_list_size(weapons_list); w++){
 				var wea = ds_list_find_value(weapons_list, w)
 				if(wea.id == w_id){
+					if(wea.weapon_price < global.money){
+						continue
+					}
 					client.weapon_type = wea.weapon_type_id
 					for(var i = 0; i < instance_number(obj_Player); i++){
 						var player = instance_find(obj_Player, i)
@@ -235,6 +238,8 @@ if server == event_id{
 					for(var s = 0; s < ds_list_size(sockets); s++){
 						var so = ds_list_find_value(sockets, s)
 						SendWeaponDrop(so, W_DESTROY, wea.id, 0)
+					//	audio_play_sound(sfx_weaponbox,1,false)
+
 					}
 					with(wea){
 						instance_destroy()
@@ -289,6 +294,10 @@ if server == event_id{
 						}
 					break
 					case WEAPON_HP_REGEN : 
+						p.weapon_type = -1
+						p.weapon_name = ""
+						p.playerhp = p.playerMaxhp
+						
 					break
 					case WEAPON_MISSILE : 
 					break

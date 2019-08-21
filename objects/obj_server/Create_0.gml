@@ -36,7 +36,8 @@
 #macro PACKET_WEAPON_BOX		18
 #macro PACKET_REQUEST_WEAPON	19
 #macro PACKET_SPECIAL_ABILITY	20
-#macro PACKET_UPDATE_SCORE	21
+#macro PACKET_UPDATE_SCORE		21
+#macro PACKET_WIN				22
 #macro PACKET_BOSS_BULLET_HIT    31
 #macro PACKET_ALLLOST			32
 var invalid_number = true
@@ -58,6 +59,9 @@ reserved_positions = ds_map_create()
 server = network_create_server(network_socket_tcp, PORT, global.max_players)
 
 buffer = buffer_create(16384, buffer_grow, 1)
+
+audio_stop_all()
+audio_play_sound(mus_game, 0 , true)
 
 clients = ds_map_create()
 sockets = ds_list_create()
@@ -86,6 +90,8 @@ global.current_level = 0;
 global.youlose = false;
 enemies_done = 0
 
+audio_stop_all()
+audio_play_sound(mus_game, 0 , true)
 
 available_tanks = ds_list_create()
 ds_list_add(available_tanks, TANK_CHARACTER_RED)

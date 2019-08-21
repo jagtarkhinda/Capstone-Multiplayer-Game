@@ -213,8 +213,9 @@ if socket == event_id{
 	case PACKET_UPDATE_SCORE:
 		teamScore = buffer_read(buff, buffer_s16)
 		//show_debug_message("Total Coins : " + string(totcoin))
-		global.cli_game_score = teamScore
+		global.cli_game_score += teamScore
 	break
+	
 	
 	case PACKET_BOSS_ENTITY:
 			var c = buffer_read(buff, buffer_u8)
@@ -350,6 +351,15 @@ if socket == event_id{
 					}
 				break
 			}
+			break
+		#endregion
+		#region Win
+		case PACKET_WIN:
+			var c = buffer_read(buff, buffer_u8)
+			if(c){
+				instance_create_layer(0, 0, "End_Menu",obj_remote_win)
+			}
+		break
 		#endregion
 		
 	}	

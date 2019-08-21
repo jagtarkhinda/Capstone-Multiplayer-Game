@@ -3,7 +3,7 @@
 left = true;
 right = false;
 
-bossMaxHp = 10
+bossMaxHp = 1000
 bossHp = bossMaxHp
 ser_boss_col_time = 2
 

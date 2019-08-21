@@ -1,2 +1,2 @@
-global.money += 1
+global.money += 50
 instance_destroy()

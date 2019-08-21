@@ -75,6 +75,22 @@ if(global.max_players == global.players_picked  || game_is_started > 0){
 			if(game_timer <= 0 && global.boss_rage)
 			{
 				game_timer = 30;
+				if((boss.bossHp + 30) >= boss.bossMaxHp){
+					boss.bossHp = boss.bossMaxHp 
+				}else{
+					boss.bossHp = 30
+				}
+				
+				for(var en = 0; en < ds_list_size(enemies1); en++)
+				{
+					var enemy_i = ds_list_find_value(enemies1, en)
+					if((enemy_i.monsterHp + 3) >= enemy_i.monsterMaxHp){
+						enemy_i.monsterHp = enemy_i.monsterMaxHp 
+					}else{
+						enemy_i.monsterHp = 3
+					}
+				}
+				
 				//increase boss hp
 				//increase enemy hp
 			}
@@ -201,9 +217,11 @@ if(global.max_players == global.players_picked  || game_is_started > 0){
 			if(instance_exists(boss)){
 				if(boss.bossHp <= 0){
 					SendBossEntity(soc, BOSS_DESTROY, boss.id, 0)
+					
 					global.game_score += 150
 					UpdateScore(soc, global.game_score)
 					show_debug_message("Game Score: " + string(global.game_score))
+					SendWinScreen(soc,true)
 					for(var oo = 0; oo < ds_list_size(boss_bullets_server); oo++)
 					{
 						var bu = ds_list_find_value(boss_bullets_server, oo)
@@ -332,7 +350,7 @@ if(global.max_players == global.players_picked  || game_is_started > 0){
 						//send to destroy client side enemy
 						SendEnemyPositions(soc, ENE1_HP, enemy.id, enemy.monsterHp)
 						SendEnemyPositions(soc, ENE1_DESTROY, enemy.id, 0)
-						global.game_score += 5
+						global.game_score = 5
 						UpdateScore(soc, global.game_score)
 						show_debug_message("Game Score: " + string(global.game_score))
 						//send to create a coin in client side

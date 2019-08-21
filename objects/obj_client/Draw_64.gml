@@ -27,7 +27,7 @@ if(!playing){
 				sp = spr_Tank_4
 			break
 		}
-		
+		/*
 		var indicator_color = c_green 
 
 		draw_sprite_ext(sp, 0, 300+128*i, 300, 4, 4, 0, c_white, 1)
@@ -44,9 +44,9 @@ if(!playing){
 			
 			draw_sprite_ext(spr_indicator, 0, 300+128*i, 300, 4, 4, 0, indicator_color, 1)
 		}
+		*/
 		
-		
-	/*	var indicator_color = c_red 
+		var indicator_color = c_red 
 
 		draw_sprite_ext(sp, 0, 300+128*i, 300, 4, 4, 0, c_white, 1)
 		if(i == char){
@@ -61,7 +61,7 @@ if(!playing){
 				draw_text(300+128*i, 300-50, "PICKED")
 			}
 			draw_sprite_ext(spr_indicator, 0, 300+128*i, 300, 4, 4, 0, indicator_color, 1)
-		}*/
+		}
 	}
 
 }

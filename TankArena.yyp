@@ -207,6 +207,14 @@
             }
         },
         {
+            "Key": "311b3d9a-168f-4f96-bd70-1d3a60c819b0",
+            "Value": {
+                "id": "f0f772df-9d9a-4fbd-9e18-b27767fd04dd",
+                "resourcePath": "scripts\\SendWinScreen\\SendWinScreen.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "3217061a-b3bd-4edf-911d-17df98e76e2e",
             "Value": {
                 "id": "a0d2336a-a6e3-4c26-8097-99a70030909d",
@@ -391,6 +399,14 @@
             }
         },
         {
+            "Key": "52bf959a-8370-40d3-b46b-33f578caf864",
+            "Value": {
+                "id": "026cf0b4-13e9-4869-9a42-15e1e361845d",
+                "resourcePath": "objects\\obj_win\\obj_win.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
             "Key": "5539241f-a6b3-4110-82de-634261e55426",
             "Value": {
                 "id": "7c71db2f-bc8a-44fb-b8d4-4b5c1d9c60b7",
@@ -463,6 +479,22 @@
             }
         },
         {
+            "Key": "69cddca6-973c-4e1a-860c-87c2e8d6bc80",
+            "Value": {
+                "id": "81ab2d23-31a3-4502-ba30-7ec840b29038",
+                "resourcePath": "sounds\\mus_menu\\mus_menu.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
+            "Key": "6c3f6659-a8d2-4bf2-9d0b-110eb23f9061",
+            "Value": {
+                "id": "4df4aef3-0bea-43e3-aa53-a83020bfae52",
+                "resourcePath": "sounds\\sfx_weaponbox\\sfx_weaponbox.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "6ee843e6-dd98-43ca-bbfb-0182fa684450",
             "Value": {
                 "id": "f7d9ab0a-8189-4444-b138-3ffd1620feae",
@@ -484,6 +516,14 @@
                 "id": "3977b4d9-ae83-48de-b318-a8ae02f91c0e",
                 "resourcePath": "sprites\\spr_indicator\\spr_indicator.yy",
                 "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "78ce0629-a02a-411c-9f6b-15668d455f2c",
+            "Value": {
+                "id": "54e66f3d-6da8-4bdd-bf25-30ee55dae8a6",
+                "resourcePath": "sounds\\sfx_coin_drop\\sfx_coin_drop.yy",
+                "resourceType": "GMSound"
             }
         },
         {
@@ -587,6 +627,14 @@
             "Value": {
                 "id": "64279345-938a-4982-a8fa-917d5a99a158",
                 "resourcePath": "objects\\obj_remote_weapon\\obj_remote_weapon.yy",
+                "resourceType": "GMObject"
+            }
+        },
+        {
+            "Key": "912f9b0b-4a15-40d7-a39c-5d540b564eee",
+            "Value": {
+                "id": "947da22e-a68d-48c8-93e7-e999da30c043",
+                "resourcePath": "objects\\obj_remote_win\\obj_remote_win.yy",
                 "resourceType": "GMObject"
             }
         },
@@ -839,6 +887,14 @@
             }
         },
         {
+            "Key": "d0404214-6d77-4e01-820c-996dcbe6a776",
+            "Value": {
+                "id": "34dce155-b6d7-47b4-aff4-21e12c828517",
+                "resourcePath": "sounds\\mus_rage\\mus_rage.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "d2a98063-d594-4ada-bd11-8fdd76afeec2",
             "Value": {
                 "id": "5a42764e-d113-4342-bb03-21b68725150f",
@@ -1039,6 +1095,14 @@
             }
         },
         {
+            "Key": "f9a8aee3-797f-417f-8527-12932dcf581c",
+            "Value": {
+                "id": "f523af0f-dd7d-4d53-9cf8-6d22939bd5bc",
+                "resourcePath": "sounds\\mus_game\\mus_game.yy",
+                "resourceType": "GMSound"
+            }
+        },
+        {
             "Key": "fc81a3d5-c000-414a-a5d3-47d8d9f5873e",
             "Value": {
                 "id": "15d79f6c-9bb8-44a9-8b56-d5bc8f8ba76e",
@@ -1072,6 +1136,7 @@
         "9b7d645a-1c48-478f-a692-e3f40bdec415",
         "9c4a5fba-c15f-45ba-a505-43aebacde20b",
         "077ac716-ec90-4840-953d-1a2b999406a4",
+        "311b3d9a-168f-4f96-bd70-1d3a60c819b0",
         "ebeea667-e922-4302-ab80-33396433900d",
         "ca12abb3-c03c-4763-b126-b6f84ad2d165",
         "18a316fa-9aca-4fb6-b932-4a9c0305136e",

@@ -8,3 +8,8 @@ if(global.cli_money != undefined){
 	draw_text(camX+camW-40, camY+15, string(global.cli_money));
 	draw_sprite(spr_coin,spr_coin,camX+camW-65-sprite_width, camY+25);
 }
+
+if(global.cli_game_score != undefined){
+	draw_text(camX+camW/2, camY+15, string(global.cli_game_score));
+	//draw_sprite(spr_coin,spr_coin,camX+camW/2, camY+25);
+}
