@@ -1,5 +1,1 @@
-TEAM MEMEBERS
-
-Jagtar Singh - C0734796
-Joao Carlos Fialho Rebelo - C0706998
-Pranav Patel - C0732056
+A multiplayer networking game developer using GameMaker Studio and GML language.
